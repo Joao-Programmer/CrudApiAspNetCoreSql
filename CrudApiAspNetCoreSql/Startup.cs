@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using CrudApiAspNetCoreSql.Data;
 
 namespace CrudApiAspNetCoreSql
 {
@@ -32,6 +34,9 @@ namespace CrudApiAspNetCoreSql
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CrudApiAspNetCoreSql", Version = "v1" });
             });
+
+            services.AddDbContext<CategoryContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("DB_RestaurantAPI")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
