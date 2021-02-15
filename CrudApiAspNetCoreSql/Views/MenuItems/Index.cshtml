@@ -1,0 +1,77 @@
+﻿@model IEnumerable<CrudApiAspNetCoreSql.Models.MenuItem>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuItemDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuItemLargePortionName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuItemName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuItemPriceLarge)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuItemPriceSmall)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuItemShortName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuItemSmallPortionName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuItemCategory)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuItemDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuItemLargePortionName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuItemPriceLarge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuItemPriceSmall)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuItemShortName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuItemSmallPortionName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuItemCategory.CategoryId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MenuItemID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MenuItemID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MenuItemID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

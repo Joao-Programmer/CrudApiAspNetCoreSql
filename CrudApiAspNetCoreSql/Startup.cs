@@ -35,7 +35,7 @@ namespace CrudApiAspNetCoreSql
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CrudApiAspNetCoreSql", Version = "v1" });
             });
 
-            services.AddDbContext<CategoryContext>(options =>
+            services.AddDbContext<AppDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DB_RestaurantAPI")));
         }
 

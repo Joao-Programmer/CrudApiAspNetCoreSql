@@ -7,13 +7,17 @@ using CrudApiAspNetCoreSql.Models;
 
 namespace CrudApiAspNetCoreSql.Data
 {
-    public class CategoryContext : DbContext
+    public class AppDbContext : DbContext
     {
-        public CategoryContext (DbContextOptions<CategoryContext> options)
+        public AppDbContext (DbContextOptions<AppDbContext> options)
             : base(options)
         {
         }
 
         public DbSet<CrudApiAspNetCoreSql.Models.Category> Category { get; set; }
+
+        public DbSet<CrudApiAspNetCoreSql.Models.MenuItem> MenuItem { get; set; }
+
+        public DbSet<CrudApiAspNetCoreSql.Models.User> User { get; set; }
     }
 }

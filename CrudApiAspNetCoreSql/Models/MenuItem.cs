@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CrudApiAspNetCoreSql.Models
 {
+    [Table("MenuItems")]
     public class MenuItem
     {
         public int MenuItemID { get; set; }

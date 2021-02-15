@@ -10,22 +10,23 @@ using CrudApiAspNetCoreSql.Models;
 
 namespace CrudApiAspNetCoreSql.Controllers
 {
-    public class CategoriesController : Controller
+    public class MenuItemsController : Controller
     {
         private readonly AppDbContext _context;
 
-        public CategoriesController(AppDbContext context)
+        public MenuItemsController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: Categories
+        // GET: MenuItems
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Category.ToListAsync());
+            var appDbContext = _context.MenuItem.Include(m => m.MenuItemCategory);
+            return View(await appDbContext.ToListAsync());
         }
 
-        // GET: Categories/Details/5
+        // GET: MenuItems/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +34,42 @@ namespace CrudApiAspNetCoreSql.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
-            if (category == null)
+            var menuItem = await _context.MenuItem
+                .Include(m => m.MenuItemCategory)
+                .FirstOrDefaultAsync(m => m.MenuItemID == id);
+            if (menuItem == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(menuItem);
         }
 
-        // GET: Categories/Create
+        // GET: MenuItems/Create
         public IActionResult Create()
         {
+            ViewData["MenuItemCategoryIdFk"] = new SelectList(_context.Category, "CategoryId", "CategoryId");
             return View();
         }
 
-        // POST: Categories/Create
+        // POST: MenuItems/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoryId,CategoryShortName,CategoryName,CategorySpecialInstructions,CategoryUrl,CategoryCreateDate")] Category category)
+        public async Task<IActionResult> Create([Bind("MenuItemID,MenuItemDescription,MenuItemLargePortionName,MenuItemName,MenuItemPriceLarge,MenuItemPriceSmall,MenuItemShortName,MenuItemSmallPortionName,MenuItemCategoryIdFk")] MenuItem menuItem)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(category);
+                _context.Add(menuItem);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            ViewData["MenuItemCategoryIdFk"] = new SelectList(_context.Category, "CategoryId", "CategoryId", menuItem.MenuItemCategoryIdFk);
+            return View(menuItem);
         }
 
-        // GET: Categories/Edit/5
+        // GET: MenuItems/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +77,23 @@ namespace CrudApiAspNetCoreSql.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category.FindAsync(id);
-            if (category == null)
+            var menuItem = await _context.MenuItem.FindAsync(id);
+            if (menuItem == null)
             {
                 return NotFound();
             }
-            return View(category);
+            ViewData["MenuItemCategoryIdFk"] = new SelectList(_context.Category, "CategoryId", "CategoryId", menuItem.MenuItemCategoryIdFk);
+            return View(menuItem);
         }
 
-        // POST: Categories/Edit/5
+        // POST: MenuItems/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,CategoryShortName,CategoryName,CategorySpecialInstructions,CategoryUrl,CategoryCreateDate")] Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("MenuItemID,MenuItemDescription,MenuItemLargePortionName,MenuItemName,MenuItemPriceLarge,MenuItemPriceSmall,MenuItemShortName,MenuItemSmallPortionName,MenuItemCategoryIdFk")] MenuItem menuItem)
         {
-            if (id != category.CategoryId)
+            if (id != menuItem.MenuItemID)
             {
                 return NotFound();
             }
@@ -97,12 +102,12 @@ namespace CrudApiAspNetCoreSql.Controllers
             {
                 try
                 {
-                    _context.Update(category);
+                    _context.Update(menuItem);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoryExists(category.CategoryId))
+                    if (!MenuItemExists(menuItem.MenuItemID))
                     {
                         return NotFound();
                     }
@@ -113,10 +118,11 @@ namespace CrudApiAspNetCoreSql.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            ViewData["MenuItemCategoryIdFk"] = new SelectList(_context.Category, "CategoryId", "CategoryId", menuItem.MenuItemCategoryIdFk);
+            return View(menuItem);
         }
 
-        // GET: Categories/Delete/5
+        // GET: MenuItems/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +130,31 @@ namespace CrudApiAspNetCoreSql.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
-            if (category == null)
+            var menuItem = await _context.MenuItem
+                .Include(m => m.MenuItemCategory)
+                .FirstOrDefaultAsync(m => m.MenuItemID == id);
+            if (menuItem == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(menuItem);
         }
 
-        // POST: Categories/Delete/5
+        // POST: MenuItems/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var category = await _context.Category.FindAsync(id);
-            _context.Category.Remove(category);
+            var menuItem = await _context.MenuItem.FindAsync(id);
+            _context.MenuItem.Remove(menuItem);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CategoryExists(int id)
+        private bool MenuItemExists(int id)
         {
-            return _context.Category.Any(e => e.CategoryId == id);
+            return _context.MenuItem.Any(e => e.MenuItemID == id);
         }
     }
 }
