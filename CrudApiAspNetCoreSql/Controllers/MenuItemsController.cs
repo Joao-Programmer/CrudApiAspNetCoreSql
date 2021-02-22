@@ -10,6 +10,8 @@ using CrudApiAspNetCoreSql.Models;
 
 namespace CrudApiAspNetCoreSql.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class MenuItemsController : Controller
     {
         private readonly AppDbContext _context;
@@ -20,6 +22,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // GET: MenuItems
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var appDbContext = _context.MenuItem.Include(m => m.MenuItemCategory);
@@ -27,6 +30,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // GET: MenuItems/Details/5
+        [HttpGet("{id}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -70,6 +74,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // GET: MenuItems/Edit/5
+        [HttpPut("{id}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -123,6 +128,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // GET: MenuItems/Delete/5
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

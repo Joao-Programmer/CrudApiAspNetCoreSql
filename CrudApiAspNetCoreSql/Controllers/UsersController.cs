@@ -10,6 +10,8 @@ using CrudApiAspNetCoreSql.Models;
 
 namespace CrudApiAspNetCoreSql.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class UsersController : Controller
     {
         private readonly AppDbContext _context;
@@ -20,12 +22,14 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // GET: Users
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             return View(await _context.User.ToListAsync());
         }
 
         // GET: Users/Details/5
+        [HttpGet("{id}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -66,6 +70,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // GET: Users/Edit/5
+        [HttpPut("{id}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -117,6 +122,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // GET: Users/Delete/5
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

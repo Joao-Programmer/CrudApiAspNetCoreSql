@@ -29,7 +29,8 @@ namespace CrudApiAspNetCoreSql
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            // services.AddControllers();
+            services.AddControllersWithViews();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CrudApiAspNetCoreSql", Version = "v1" });
