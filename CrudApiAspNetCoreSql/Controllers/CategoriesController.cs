@@ -11,7 +11,7 @@ using CrudApiAspNetCoreSql.Models;
 namespace CrudApiAspNetCoreSql.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]    
+    [ApiController]
     public class CategoriesController : Controller
     {
         private readonly AppDbContext _context;
@@ -47,7 +47,8 @@ namespace CrudApiAspNetCoreSql.Controllers
             return View(category);
         }
 
-        // GET: Categories/Create        
+        // GET: Categories/Create 
+        //[HttpGet, ActionName("Create")]
         public IActionResult Create()
         {
             return View();
