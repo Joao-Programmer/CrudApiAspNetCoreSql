@@ -48,7 +48,6 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // GET: Users/Create
-        [HttpGet, ActionName("Create")]
         public IActionResult Create()
         {
             return View();

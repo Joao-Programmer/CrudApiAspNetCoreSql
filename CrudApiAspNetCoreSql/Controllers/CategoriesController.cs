@@ -17,14 +17,14 @@ namespace CrudApiAspNetCoreSql.Controllers
         private readonly AppDbContext _context;
 
         public CategoriesController(AppDbContext context)
-        {
+        {            
             _context = context;
         }
 
         // GET: Categories
         [HttpGet]
         public async Task<IActionResult> Index()
-        {
+        {            
             return View(await _context.Category.ToListAsync());
         }
 
