@@ -48,7 +48,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // GET: Categories/Create 
-        //[HttpGet, ActionName("Create")]
+        [Route("/Categories/Create")]
         public IActionResult Create()
         {
             return View();
