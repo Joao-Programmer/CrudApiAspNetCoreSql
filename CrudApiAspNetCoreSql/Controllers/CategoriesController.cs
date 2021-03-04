@@ -48,7 +48,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // GET: Categories/Create 
-        [Route("/Categories/Create")]
+        [HttpGet("/Categories/Create")]
         public IActionResult Create()
         {
             return View();
@@ -57,7 +57,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         // POST: Categories/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost("/Categories/Create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CategoryId,CategoryShortName,CategoryName,CategorySpecialInstructions,CategoryUrl,CategoryCreateDate")] Category category)
         {

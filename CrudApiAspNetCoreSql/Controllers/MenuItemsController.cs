@@ -50,7 +50,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // GET: MenuItems/Create
-        [Route("/MenuItems/Create")]
+        [HttpGet("/MenuItems/Create")]
         public IActionResult Create()
         {
             ViewData["MenuItemCategoryIdFk"] = new SelectList(_context.Category, "CategoryId", "CategoryId");
