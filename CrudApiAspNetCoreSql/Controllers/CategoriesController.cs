@@ -11,7 +11,7 @@ using CrudApiAspNetCoreSql.Models;
 namespace CrudApiAspNetCoreSql.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    // [ApiController]
     public class CategoriesController : Controller
     {
         private readonly AppDbContext _context;
