@@ -11,7 +11,6 @@ using CrudApiAspNetCoreSql.Models;
 namespace CrudApiAspNetCoreSql.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
     public class MenuItemsController : Controller
     {
         private readonly AppDbContext _context;
@@ -30,7 +29,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // GET: MenuItems/Details/5
-        [HttpGet("{id}")]
+        [HttpGet("/MenuItems/Details/{id}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -60,7 +59,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         // POST: MenuItems/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost("/MenuItems/Create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("MenuItemID,MenuItemDescription,MenuItemLargePortionName,MenuItemName,MenuItemPriceLarge,MenuItemPriceSmall,MenuItemShortName,MenuItemSmallPortionName,MenuItemCategoryIdFk")] MenuItem menuItem)
         {
@@ -75,7 +74,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // GET: MenuItems/Edit/5
-        [HttpPut("{id}")]
+        [HttpGet("/MenuItems/Edit/{id}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -95,7 +94,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         // POST: MenuItems/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost("/MenuItems/Edit/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("MenuItemID,MenuItemDescription,MenuItemLargePortionName,MenuItemName,MenuItemPriceLarge,MenuItemPriceSmall,MenuItemShortName,MenuItemSmallPortionName,MenuItemCategoryIdFk")] MenuItem menuItem)
         {
@@ -129,7 +128,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // GET: MenuItems/Delete/5
-        [HttpDelete("{id}")]
+        [HttpGet("/MenuItems/Delete/{id}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -149,7 +148,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // POST: MenuItems/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost("/MenuItems/Delete/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

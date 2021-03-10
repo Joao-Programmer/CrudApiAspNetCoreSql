@@ -11,7 +11,6 @@ using CrudApiAspNetCoreSql.Models;
 namespace CrudApiAspNetCoreSql.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
     public class UsersController : Controller
     {
         private readonly AppDbContext _context;
@@ -29,7 +28,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // GET: Users/Details/5
-        [HttpGet("{id}")]
+        [HttpGet("/Users/Details/{id}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -57,7 +56,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         // POST: Users/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost("/Users/Create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("UserId,UserFullName,UserName,UserPassword,UserEmail,UserCreateDate")] User user)
         {
@@ -71,7 +70,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // GET: Users/Edit/5
-        [HttpPut("{id}")]
+        [HttpGet("/Users/Edit/{id}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -90,7 +89,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         // POST: Users/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost("/Users/Edit/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("UserId,UserFullName,UserName,UserPassword,UserEmail,UserCreateDate")] User user)
         {
@@ -123,7 +122,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // GET: Users/Delete/5
-        [HttpDelete("{id}")]
+        [HttpGet("/Users/Delete/{id}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -142,7 +141,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // POST: Users/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost("/Users/Delete/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

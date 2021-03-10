@@ -10,8 +10,7 @@ using CrudApiAspNetCoreSql.Models;
 
 namespace CrudApiAspNetCoreSql.Controllers
 {
-    [Route("api/[controller]")]
-    // [ApiController]
+    [Route("api/[controller]")]    
     public class CategoriesController : Controller
     {
         private readonly AppDbContext _context;
@@ -28,8 +27,8 @@ namespace CrudApiAspNetCoreSql.Controllers
             return View(await _context.Category.ToListAsync());
         }
 
-        // GET: Categories/Details/5
-        [HttpGet("{id}")]
+        // GET: Categories/Details/5        
+        [HttpGet("/Categories/Details/{id}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -70,8 +69,8 @@ namespace CrudApiAspNetCoreSql.Controllers
             return View(category);
         }
 
-        // GET: Categories/Edit/5
-        [HttpPut("{id}")]
+        // GET: Categories/Edit/5       
+        [HttpGet("/Categories/Edit/{id}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -90,7 +89,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         // POST: Categories/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost("/Categories/Edit/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CategoryId,CategoryShortName,CategoryName,CategorySpecialInstructions,CategoryUrl,CategoryCreateDate")] Category category)
         {
@@ -122,8 +121,8 @@ namespace CrudApiAspNetCoreSql.Controllers
             return View(category);
         }
 
-        // GET: Categories/Delete/5
-        [HttpDelete("{id}")]
+        // GET: Categories/Delete/5        
+        [HttpGet("/Categories/Delete/{id}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -142,7 +141,8 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // POST: Categories/Delete/5
-        [HttpPost, ActionName("Delete")]
+        //[HttpPost, ActionName("Delete")]
+        [HttpPost("/Categories/Delete/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
