@@ -52,7 +52,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         [HttpGet("/MenuItems/Create")]
         public IActionResult Create()
         {
-            ViewData["MenuItemCategoryIdFk"] = new SelectList(_context.Category, "CategoryId", "CategoryId");
+            ViewData["MenuItemCategoryIdFk"] = new SelectList(_context.Category, "CategoryId", "CategoryName");
             return View();
         }
 
@@ -69,7 +69,7 @@ namespace CrudApiAspNetCoreSql.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MenuItemCategoryIdFk"] = new SelectList(_context.Category, "CategoryId", "CategoryId", menuItem.MenuItemCategoryIdFk);
+            ViewData["MenuItemCategoryIdFk"] = new SelectList(_context.Category, "CategoryId", "CategoryName", menuItem.MenuItemCategoryIdFk);
             return View(menuItem);
         }
 
@@ -87,7 +87,7 @@ namespace CrudApiAspNetCoreSql.Controllers
             {
                 return NotFound();
             }
-            ViewData["MenuItemCategoryIdFk"] = new SelectList(_context.Category, "CategoryId", "CategoryId", menuItem.MenuItemCategoryIdFk);
+            ViewData["MenuItemCategoryIdFk"] = new SelectList(_context.Category, "CategoryId", "CategoryName", menuItem.MenuItemCategoryIdFk);
             return View(menuItem);
         }
 
@@ -123,7 +123,7 @@ namespace CrudApiAspNetCoreSql.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MenuItemCategoryIdFk"] = new SelectList(_context.Category, "CategoryId", "CategoryId", menuItem.MenuItemCategoryIdFk);
+            ViewData["MenuItemCategoryIdFk"] = new SelectList(_context.Category, "CategoryId", "CategoryName", menuItem.MenuItemCategoryIdFk);
             return View(menuItem);
         }
 
