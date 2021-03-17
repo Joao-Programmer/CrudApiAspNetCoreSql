@@ -10,7 +10,7 @@ using CrudApiAspNetCoreSql.Models;
 
 namespace CrudApiAspNetCoreSql.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class MenuItemsController : Controller
     {
         private readonly AppDbContext _context;
