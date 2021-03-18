@@ -14,7 +14,7 @@
       "launchBrowser": true,
       "launchUrl": "Categories",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Staging"
       }
     },
     "CrudApiAspNetCoreSql": {
