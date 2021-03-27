@@ -1,5 +1,16 @@
-﻿/* ----------------------- Media Queries ------------------------ */
+﻿.marginTop10px{
+    margin-top: 10px;
+}
 
+.marginTop20px {
+    margin-top: 20px;
+}
+
+.col-sm-10{
+    padding-left: 0px;
+}
+
+/* ----------------------- Media Queries ------------------------ */
 @media (min-width: 1200px) {
     .container {
         max-width: 1180px;
