@@ -20,13 +20,22 @@ namespace CrudApiAspNetCoreSql.Controllers
             _context = context;
         }
 
+        // ---------------------------- USANDO VIEW -----------------------------------
         // GET: Categories
         [HttpGet]
         public async Task<IActionResult> Index()
-        {            
+        {
             return View(await _context.Category.ToListAsync());
         }
 
+        // ---------------------------- USANDO POSTMAN --------------------------------
+        [HttpGet("/Categories/GetAllCategories")]
+        public async Task<ActionResult<IEnumerable<Category>>> GetAllCategories()
+        {
+            return await _context.Category.ToListAsync();
+        }
+
+        // ---------------------------- USANDO VIEW -----------------------------------
         // GET: Categories/Details/5        
         [HttpGet("/Categories/Details/{id}")]
         public async Task<IActionResult> Details(int? id)
@@ -36,14 +45,23 @@ namespace CrudApiAspNetCoreSql.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            var category = await _context.Category.FirstOrDefaultAsync(m => m.CategoryId == id);
+
             if (category == null)
             {
                 return NotFound();
             }
 
             return View(category);
+        }
+
+        // ---------------------------- USANDO POSTMAN --------------------------------
+        [HttpGet("/Categories/GetCategoryId/{id}")]
+        public async Task<Category> GetCategoryId(int? id)
+        {
+            var category = await _context.Category.FirstOrDefaultAsync(m => m.CategoryId == id);
+
+            return category;
         }
 
         // GET: Categories/Create 
@@ -53,9 +71,8 @@ namespace CrudApiAspNetCoreSql.Controllers
             return View();
         }
 
+        // ---------------------------- USANDO VIEW -----------------------------------
         // POST: Categories/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost("/Categories/Create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CategoryId,CategoryShortName,CategoryName,CategorySpecialInstructions,CategoryUrl,CategoryCreateDate")] Category category)
@@ -68,6 +85,7 @@ namespace CrudApiAspNetCoreSql.Controllers
             }
             return View(category);
         }
+
 
         // GET: Categories/Edit/5       
         [HttpGet("/Categories/Edit/{id}")]

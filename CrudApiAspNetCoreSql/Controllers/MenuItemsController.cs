@@ -20,6 +20,7 @@ namespace CrudApiAspNetCoreSql.Controllers
             _context = context;
         }
 
+        // ---------------------------- USANDO VIEW -----------------------------------
         // GET: MenuItems
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -28,6 +29,14 @@ namespace CrudApiAspNetCoreSql.Controllers
             return View(await appDbContext.ToListAsync());
         }
 
+        // ---------------------------- USANDO POSTMAN --------------------------------
+        [HttpGet("/MenuItems/GetAllMenuItems")]
+        public async Task<ActionResult<IEnumerable<MenuItem>>> GetAllMenuItems()
+        {
+            return await _context.MenuItem.ToListAsync();
+        }
+
+        // ---------------------------- USANDO VIEW -----------------------------------
         // GET: MenuItems/Details/5
         [HttpGet("/MenuItems/Details/{id}")]
         public async Task<IActionResult> Details(int? id)
@@ -46,6 +55,15 @@ namespace CrudApiAspNetCoreSql.Controllers
             }
 
             return View(menuItem);
+        }
+
+        // ---------------------------- USANDO POSTMAN --------------------------------
+        [HttpGet("/MenuItems/GetMenuItemId/{id}")]
+        public async Task<MenuItem> GetMenuItemId(int? id)
+        {
+            var menuItem = await _context.MenuItem.FirstOrDefaultAsync(m => m.MenuItemID == id);
+
+            return menuItem;
         }
 
         // GET: MenuItems/Create
