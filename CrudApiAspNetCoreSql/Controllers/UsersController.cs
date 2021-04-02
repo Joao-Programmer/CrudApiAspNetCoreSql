@@ -20,6 +20,7 @@ namespace CrudApiAspNetCoreSql.Controllers
             _context = context;
         }
 
+        // ---------------------------- USANDO VIEW -----------------------------------
         // GET: Users
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -27,6 +28,14 @@ namespace CrudApiAspNetCoreSql.Controllers
             return View(await _context.User.ToListAsync());
         }
 
+        // ---------------------------- USANDO POSTMAN --------------------------------
+        [HttpGet("/Users/GetAllUsers")]
+        public async Task<ActionResult<IEnumerable<User>>> GetAllUsers()
+        {
+            return await _context.User.ToListAsync();
+        }
+
+        // ---------------------------- USANDO VIEW -----------------------------------
         // GET: Users/Details/5
         [HttpGet("/Users/Details/{id}")]
         public async Task<IActionResult> Details(int? id)
@@ -44,6 +53,15 @@ namespace CrudApiAspNetCoreSql.Controllers
             }
 
             return View(user);
+        }
+
+        // ---------------------------- USANDO POSTMAN --------------------------------
+        [HttpGet("/Users/GetUserId/{id}")]
+        public async Task<User> GetUserId(int? id)
+        {
+            var user = await _context.User.FirstOrDefaultAsync(m => m.UserId == id);
+
+            return user;
         }
 
         // GET: Users/Create
