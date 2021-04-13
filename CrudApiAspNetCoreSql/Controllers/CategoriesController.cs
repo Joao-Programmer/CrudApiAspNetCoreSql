@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CrudApiAspNetCoreSql.Data;
 using CrudApiAspNetCoreSql.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CrudApiAspNetCoreSql.Controllers
 {
     [Route("[controller]")]
+    [Authorize]
     public class CategoriesController : Controller
     {
         private readonly AppDbContext _context;
