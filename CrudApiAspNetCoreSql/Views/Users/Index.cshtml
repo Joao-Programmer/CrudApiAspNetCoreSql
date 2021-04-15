@@ -4,25 +4,25 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 class="text-center">Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table table-striped">
+    <thead class="thead-dark">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.UserFullName)
+                Full Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UserName)
+                Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UserEmail)
+                Email
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UserCreateDate)
+                Create Date
             </th>
             <th></th>
         </tr>
@@ -44,9 +44,9 @@
                     @Html.DisplayFor(modelItem => item.UserCreateDate)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.UserId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.UserId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.UserId">    <i class="fa fa-pencil-alt fa-sm"></i></a> |
+                    <a asp-action="Details" asp-route-id="@item.UserId"> <i class="fa fa-search fa-sm"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.UserId">  <i class="fa fa-trash-alt fa-sm"></i></a>
                 </td>
             </tr>
         }

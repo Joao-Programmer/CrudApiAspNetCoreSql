@@ -4,40 +4,40 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 class="text-center">Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table table-striped">
+    <thead class="thead-dark">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.MenuItemDescription)
+                Description
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MenuItemLargePortionName)
+                Large Portion Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MenuItemName)
+                Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MenuItemPriceLarge)
+                Price Large
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MenuItemPriceSmall)
+                Price Small
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MenuItemShortName)
+                Short Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MenuItemSmallPortionName)
+                Small Portion Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MenuItemCategoryIdFk)
+                Category ID
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MenuItemCategory)
+                Category Name
             </th>
             <th></th>
         </tr>
@@ -73,9 +73,9 @@
                 @Html.DisplayFor(modelItem => item.MenuItemCategory.CategoryName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.MenuItemID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MenuItemID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MenuItemID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.MenuItemID">    <i class="fa fa-pencil-alt fa-sm"></i></a> |
+                <a asp-action="Details" asp-route-id="@item.MenuItemID"> <i class="fa fa-search fa-sm"></i></a> |
+                <a asp-action="Delete" asp-route-id="@item.MenuItemID">  <i class="fa fa-trash-alt fa-sm"></i></a>
             </td>
         </tr>
 }
