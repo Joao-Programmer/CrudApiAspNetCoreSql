@@ -10,57 +10,65 @@
     <h4>MenuItem</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2 text-right">
-            Description:
+        <dt class="col-sm-2 text-right">
+            ID:
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MenuItemDescription)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MenuItemID)
         </dd>
-        <dt class = "col-sm-2 text-right">
-            Large Portion Name:
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MenuItemLargePortionName)
-        </dd>
-        <dt class = "col-sm-2 text-right">
-            Name:
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MenuItemName)
-        </dd>
-        <dt class = "col-sm-2 text-right">
-            Price Large:
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MenuItemPriceLarge)
-        </dd>
-        <dt class = "col-sm-2 text-right">
-            Price Small:
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MenuItemPriceSmall)
-        </dd>
-        <dt class = "col-sm-2 text-right">
+        <dt class="col-sm-2 text-right">
             Short Name:
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.MenuItemShortName)
         </dd>
-        <dt class = "col-sm-2 text-right">
+        <dt class="col-sm-2 text-right">
+            Name:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MenuItemName)
+        </dd>
+        <dt class="col-sm-2 text-right">
+            Description:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MenuItemDescription)
+        </dd>
+        <dt class="col-sm-2 text-right">
             Small Portion Name:
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.MenuItemSmallPortionName)
         </dd>
-        <dt class = "col-sm-2 text-right">
+        <dt class="col-sm-2 text-right">
+            Large Portion Name:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MenuItemLargePortionName)
+        </dd>
+        <dt class="col-sm-2 text-right">
+            Price Small:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MenuItemPriceSmall)
+        </dd>
+        <dt class="col-sm-2 text-right">
+            Price Large:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MenuItemPriceLarge)
+        </dd>
+        <dt class="col-sm-2 text-right">
             Item Category:
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.MenuItemCategory.CategoryId)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.MenuItemID" class="btn btn-primary">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.MenuItemID" class="btn btn-primary">Edit</a>
+</div>
+<div class="marginTop10px">
     <a asp-action="Index" class="btn btn-secondary">Back to List</a>
 </div>

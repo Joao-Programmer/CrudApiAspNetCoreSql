@@ -13,25 +13,28 @@
     <thead class="thead-dark">
         <tr>
             <th>
-                Description
-            </th>
-            <th>
-                Large Portion Name
-            </th>
-            <th>
-                Name
-            </th>
-            <th>
-                Price Large
-            </th>
-            <th>
-                Price Small
+                ID
             </th>
             <th>
                 Short Name
             </th>
             <th>
-                Small Portion Name)
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Small Portion Name
+            </th>
+            <th>
+                Large Portion Name
+            </th>
+            <th>
+                Price Small
+            </th>
+            <th>
+                Price Large
             </th>
             <th>
                 Category ID
@@ -39,32 +42,36 @@
             <th>
                 Category Name
             </th>
-            <th></th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.MenuItemDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MenuItemLargePortionName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MenuItemName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MenuItemPriceLarge)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MenuItemPriceSmall)
+                @Html.DisplayFor(modelItem => item.MenuItemID)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MenuItemShortName)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.MenuItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuItemDescription)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.MenuItemSmallPortionName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuItemLargePortionName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuItemPriceSmall)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuItemPriceLarge)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MenuItemCategory.CategoryId)
@@ -73,11 +80,11 @@
                 @Html.DisplayFor(modelItem => item.MenuItemCategory.CategoryName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.MenuItemID">    <i class="fa fa-pencil-alt fa-sm"></i></a> |
-                <a asp-action="Details" asp-route-id="@item.MenuItemID"> <i class="fa fa-search fa-sm"></i></a> |
+                <a asp-action="Edit" asp-route-id="@item.MenuItemID">    <i class="fa fa-pencil-alt fa-sm"></i></a>
+                <a asp-action="Details" asp-route-id="@item.MenuItemID"> <i class="fa fa-search fa-sm"></i></a>
                 <a asp-action="Delete" asp-route-id="@item.MenuItemID">  <i class="fa fa-trash-alt fa-sm"></i></a>
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>
