@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace CrudApiAspNetCoreSql.Models
     [Table("MenuItems")]
     public class MenuItem
     {
+        [Key]
         public int MenuItemID { get; set; }
         public string MenuItemDescription { get; set; }
         public string MenuItemLargePortionName { get; set; }

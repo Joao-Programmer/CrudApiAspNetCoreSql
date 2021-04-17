@@ -81,7 +81,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost("/MenuItems/Create")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MenuItemID,MenuItemDescription,MenuItemLargePortionName,MenuItemName,MenuItemPriceLarge,MenuItemPriceSmall,MenuItemShortName,MenuItemSmallPortionName,MenuItemCategoryIdFk")] MenuItem menuItem)
+        public async Task<IActionResult> Create([Bind("MenuItemID,MenuItemShortName,MenuItemName,MenuItemDescription,MenuItemSmallPortionName,MenuItemLargePortionName,MenuItemPriceSmall,MenuItemPriceLarge,MenuItemCategoryIdFk")] MenuItem menuItem)
         {
             if (ModelState.IsValid)
             {
