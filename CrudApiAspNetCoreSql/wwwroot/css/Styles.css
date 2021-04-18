@@ -1,4 +1,16 @@
-﻿.marginTop10px{
+﻿.title {
+    text-shadow: 3px 1px 0px rgb(0 123 255);
+    font-size: 3em;
+    font-weight: bold;
+    color: rgb(50 50 50);
+    text-decoration: underline;
+}
+
+.btn{
+    width: 110px;
+}
+
+.marginTop10px{
     margin-top: 10px;
 }
 
