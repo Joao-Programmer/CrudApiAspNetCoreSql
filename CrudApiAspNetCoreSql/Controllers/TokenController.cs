@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace CrudApiAspNetCoreSql.Controllers
 {
     [Route("[controller]")]
-    public class TokenController : ControllerBase
+    public class TokenController : Controller
     {
         public IConfiguration _configuration;
         public readonly AppDbContext _context;
@@ -23,6 +23,13 @@ namespace CrudApiAspNetCoreSql.Controllers
         {
             _configuration = config;
             _context = context;
+        }
+
+        // GET: Token
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View("Login");
         }
 
         [HttpPost]
@@ -67,7 +74,7 @@ namespace CrudApiAspNetCoreSql.Controllers
 
         }
 
-        [HttpGet]
+        [HttpGet("/Users/GetUser")]
         private async Task<User> GetUser(string username, string password)
         {
             return _context.User.FirstOrDefault(u => u.UserName == username && u.UserPassword == password);
