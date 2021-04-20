@@ -33,7 +33,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(User _user)
+        public async Task<IActionResult> CreateToken(User _user)
         {
             if (_user != null && _user.UserName != null && _user.UserPassword != null)
             {
