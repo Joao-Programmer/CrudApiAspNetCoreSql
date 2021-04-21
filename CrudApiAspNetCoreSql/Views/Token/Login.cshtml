@@ -1,18 +1,17 @@
 ﻿@{
     ViewData["Title"] = "Login";
 }
- 
+
 <h1 class="text-center title">Login</h1>
 
 <hr />
-<div class="row">
-    <div class="col-md-6 mx-auto">
-            <form asp-action="CreateToken" class="loginBox">
-                <p class="font-weight-bold"> Please enter your login and password!</p> <input type="text" name="" placeholder="Username"> <input type="password" name="" placeholder="Password"> <input type="submit" name="" value="Login" href="#">
-            </form>
-    </div>
-</div> 
+
+<div id="loginDiv">
+    <form asp-action="CreateToken" id="loginForm" class="text-center">
+        <p class="font-weight-bold"> Please enter your login and password!</p> <input type="text" name="" placeholder="Username"> <input type="password" name="" placeholder="Password"> <input type="submit" name="" value="Login" href="#">
+    </form>
+</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-} 
+}  

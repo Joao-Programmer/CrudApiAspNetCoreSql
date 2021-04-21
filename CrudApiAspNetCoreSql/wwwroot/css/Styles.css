@@ -1,15 +1,15 @@
 ﻿/* ----------------------- Login ------------------------ */
 
-.loginBox {
-    padding: 40px 40px 10px 40px;
-    text-align: center;
+#loginForm {
+    padding: 50px 30px 50px 30px;        
     transition: 0.25s;
-    margin: 30px 20% 30px 20%;
-    box-shadow: 3px 3px 3px 0px #000000, inset 4px 4px 15px 0px #000000, 3px 3px 15px 3px rgba(0,0,0,0);
+    box-shadow: 5px 5px 5px 2px rgb(128 128 128), inset 4px 4px 25px 0px rgb(128 128 128);
+    border-radius: 10px;
+    margin: 5% auto 5% auto
 }
 
-    .loginBox input[type="text"],
-    .loginBox input[type="password"] {
+    #loginForm input[type="text"],
+    #loginForm input[type="password"] {
         border: 0;
         background: none;
         display: block;
@@ -18,40 +18,51 @@
         border: 2px solid rgb(0 123 255);
         padding: 10px 10px;
         width: 70%;
-        outline: none;        
-        border-radius: 24px;
+        outline: none;
+        border-radius: 10px;        
         transition: 0.25s
     }
-
-    .loginBox h1 {
+     
+    #loginForm h1 {
         color: white;
         text-transform: uppercase;
         font-weight: 500
     }
 
-    .loginBox input[type="text"]:focus,
-    .loginBox input[type="password"]:focus {
+    #loginForm input[type="text"]:focus,
+    #loginForm input[type="password"]:focus {
         width: 75%;
-        border-color: aqua
+        box-shadow: 0px 0px 10px 2px rgb(0 123 255)
     }
 
-    .loginBox input[type="submit"] {
+    #loginForm input[type="submit"] {
         border: 0;
         width: 35%;
         background: none;
         display: block;
         margin: 30px auto 20px auto;
         text-align: center;
+        font-weight: bold;
         border: 2px solid rgb(0 123 255);
         padding: 14px 14px;
         outline: none;
-        border-radius: 24px;
+        border-radius: 10px;
         transition: 0.25s;
         cursor: pointer
     }
 
-        .loginBox input[type="submit"]:hover {
-            background: rgb(0 123 255)
+        #loginForm input[type="submit"]:focus {
+            box-shadow: 0px 0px 10px 2px rgb(0 123 255);
+            width: 40%;
+        }
+
+        #loginForm input[type="submit"]:hover {
+            box-shadow: 0px 0px 10px 2px rgb(0 123 255);
+            width: 40%;
+        }
+
+        #loginForm input[type="submit"]:active {
+            background-color: rgb(0 123 255)
         }
 
 /* ----------------------- Geral ------------------------ */
@@ -79,29 +90,41 @@
 .col-sm-10{
     padding-left: 0px;
 }
-
+ 
 /* ----------------------- Media Queries ------------------------ */
+
+@media (min-width: 450px) {
+    #loginForm {
+        max-width: 400px;
+    }
+}
+
+@media (min-width: 768px) {
+    #loginForm {
+       max-width: 500px;
+    }
+}
 
 @media (min-width: 1200px) {
     .container {
-        max-width: 1180px;
+        max-width: 90%
     }
 }
 
 @media (min-width: 1500px) {
     .container {
-        max-width: 1480px;
+        max-width: 90%
     }
 }
 
 @media screen and (min-width: 1800px) {
     .container {
-        max-width: 1760px;
+        max-width: 90%
     }
 }
 
 @media screen and (min-width: 2400px) {
     .container {
-        max-width: 2360px;
+        max-width: 90%
     }
 }

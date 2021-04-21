@@ -50,6 +50,8 @@ namespace CrudApiAspNetCoreSql
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtConfig:Key"]))
                 };
             });
+
+            services.AddRazorPages().AddRazorRuntimeCompilation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,6 +63,7 @@ namespace CrudApiAspNetCoreSql
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CrudApiAspNetCoreSql v1"));
+                app.UseBrowserLink();
             }
 
             app.UseHttpsRedirection();
