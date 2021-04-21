@@ -1,0 +1,25 @@
+﻿@model CrudApiAspNetCoreSql.Models.User
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1 class="text-center title">Menu</h1>
+
+<hr />
+
+<div id="menuDiv" class="row text-center">
+    <div class="col-lg-4 col-md-6 col-12">
+        <input class="itemMenuDiv" type="submit" value="Categories">         
+    </div>
+    <div class="col-lg-4 col-md-6 col-12">        
+        <input class="itemMenuDiv" type="submit" value="Menu Items">
+    </div>
+    <div class="col-lg-4 col-md-12 col-12">
+        <input class="itemMenuDiv" type="submit" value="Users">        
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}  

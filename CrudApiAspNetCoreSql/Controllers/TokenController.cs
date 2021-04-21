@@ -32,8 +32,15 @@ namespace CrudApiAspNetCoreSql.Controllers
             return View("Login");
         }
 
+        // GET: Token/Menu
+        [HttpGet("/Token/Menu")]
+        public IActionResult Menu()
+        {
+            return View("Menu");
+        }
+
         [HttpPost]
-        public async Task<IActionResult> CreateToken(User _user)
+        public async Task<IActionResult> CreateToken([Bind("UserName,UserPassword")] User _user)
         {
             if (_user != null && _user.UserName != null && _user.UserPassword != null)
             {
@@ -69,7 +76,7 @@ namespace CrudApiAspNetCoreSql.Controllers
             }
             else
             {
-                return BadRequest();
+                return BadRequest("Please enter your login and password!");
             }
 
         }
