@@ -1,5 +1,6 @@
 ﻿using CrudApiAspNetCoreSql.Data;
 using CrudApiAspNetCoreSql.Models;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -9,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
@@ -22,6 +24,7 @@ namespace CrudApiAspNetCoreSql.Controllers
     {
         public IConfiguration _configuration;
         public readonly AppDbContext _context;
+        private static readonly HttpClient httpClient = new HttpClient();
 
         public TokenController(IConfiguration config, AppDbContext context)
         {
@@ -39,9 +42,9 @@ namespace CrudApiAspNetCoreSql.Controllers
         // GET: Token/Menu
         [Authorize]
         [HttpGet("/Token/Menu")]
-        public IActionResult Menu()
+        public async Task<IActionResult> Menu()
         {
-            var accessToken = Request.Headers[HeaderNames.Authorization];
+            string accessToken = await HttpContext.GetTokenAsync("access_token");
             return View("Menu");
         }
 
@@ -76,11 +79,16 @@ namespace CrudApiAspNetCoreSql.Controllers
 
                     string accessToken = new JwtSecurityTokenHandler().WriteToken(token);
 
-                    HttpClient client = new HttpClient();
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-                    client.BaseAddress = new Uri("https://localhost:44337/Token/Menu");
+                    var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:44337/Token/Menu");
+                    request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+                    HttpResponseMessage response = await httpClient.SendAsync(request);
 
-                    
+                    if (response.StatusCode != HttpStatusCode.OK)
+                    {
+                        return Content(response.ToString());
+                    }
+
+                    return Content($"{await response.Content.ReadAsStringAsync()}");
 
                 }
                 else
