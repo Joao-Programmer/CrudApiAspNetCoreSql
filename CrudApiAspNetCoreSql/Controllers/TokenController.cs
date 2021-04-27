@@ -1,12 +1,16 @@
 ﻿using CrudApiAspNetCoreSql.Data;
 using CrudApiAspNetCoreSql.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Net.Http.Headers;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,9 +37,11 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // GET: Token/Menu
+        [Authorize]
         [HttpGet("/Token/Menu")]
         public IActionResult Menu()
         {
+            var accessToken = Request.Headers[HeaderNames.Authorization];
             return View("Menu");
         }
 
@@ -66,7 +72,15 @@ namespace CrudApiAspNetCoreSql.Controllers
 
                     var token = new JwtSecurityToken(_configuration["JwtConfig:Issuer"], _configuration["JwtConfig:Audience"], claims, expires: DateTime.UtcNow.AddDays(1), signingCredentials: signIn);
 
-                    return Ok(new JwtSecurityTokenHandler().WriteToken(token));
+                    // return Ok(new JwtSecurityTokenHandler().WriteToken(token)); // USANDO POSTMAN: Retorna o token como uma resposta do servidor, daí tem que copiar esse token e colocar como uma parâmetro no header > authentication > bearer + token para acessar os métodos da API que tenham o [Authorize]
+
+                    string accessToken = new JwtSecurityTokenHandler().WriteToken(token);
+
+                    HttpClient client = new HttpClient();
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+                    client.BaseAddress = new Uri("https://localhost:44337/Token/Menu");
+
+                    
 
                 }
                 else
