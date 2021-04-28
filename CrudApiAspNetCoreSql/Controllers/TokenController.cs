@@ -79,7 +79,7 @@ namespace CrudApiAspNetCoreSql.Controllers
 
                     string accessToken = new JwtSecurityTokenHandler().WriteToken(token);
 
-                    var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:44337/Token/Menu");
+                    var request = new HttpRequestMessage(HttpMethod.Get, "https://localhost:44337/Token/Menu");
                     request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                     HttpResponseMessage response = await httpClient.SendAsync(request);
 
@@ -88,7 +88,8 @@ namespace CrudApiAspNetCoreSql.Controllers
                         return Content(response.ToString());
                     }
 
-                    return Content($"{await response.Content.ReadAsStringAsync()}");
+                    return RedirectToAction(nameof(Menu));
+                    //return RedirectToAction("Menu", "Token");
 
                 }
                 else
