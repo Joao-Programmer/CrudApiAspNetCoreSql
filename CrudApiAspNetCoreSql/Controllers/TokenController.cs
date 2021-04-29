@@ -44,7 +44,8 @@ namespace CrudApiAspNetCoreSql.Controllers
         [HttpGet("/Token/Menu")]
         public async Task<IActionResult> Menu()
         {
-            string accessToken = await HttpContext.GetTokenAsync("access_token");
+            //string accessToken = await HttpContext.GetTokenAsync("access_token");
+            var accessToken = Request.Headers[HeaderNames.Authorization];
             return View("Menu");
         }
 
@@ -87,9 +88,8 @@ namespace CrudApiAspNetCoreSql.Controllers
                     {
                         return Content(response.ToString());
                     }
-
-                    return RedirectToAction(nameof(Menu));
-                    //return RedirectToAction("Menu", "Token");
+                    
+                    return RedirectToAction("Menu", "Token");
 
                 }
                 else
