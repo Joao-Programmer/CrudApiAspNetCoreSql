@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model IEnumerable<CrudApiAspNetCoreSql.Models.User>
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -16,7 +18,22 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2021 - Restaurant API</p>
+
+            <div id="footerDiv" class="row">
+                <div id="itemLeftFooterDiv">
+                    <p>&copy; 2021 - Restaurant API</p>
+                </div>
+                <div id="itemRightFooterDiv">
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div>
+                            User: <span>@User.Identity.Name &nbsp;&nbsp;&nbsp;</span>
+                            @Html.ActionLink("Log Off", "Logoff", "Token", null, new { @class = "btn btn-outline-danger btn-sm" })
+                        </div>
+                    }
+                </div>
+            </div>
         </footer>
     </div>
 

@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace CrudApiAspNetCoreSql.Controllers
 {
     [Route("[controller]")]
-    //[Authorize]
+    [Authorize]
     public class CategoriesController : Controller
     {
         private readonly AppDbContext _context;

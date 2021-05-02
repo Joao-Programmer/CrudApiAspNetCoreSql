@@ -1,5 +1,4 @@
-﻿@model CrudApiAspNetCoreSql.Models.User
-
+﻿
 @{
     ViewData["Title"] = "Login";
 }
@@ -10,13 +9,13 @@
 
 <div id="menuDiv" class="row text-center">
     <div class="col-lg-4 col-md-6 col-12">
-        <input class="itemMenuDiv" type="submit" value="Categories">         
+        <input class="itemMenuDiv" type="button" value="Categories" onclick="location.href='../Categories';">
     </div>
-    <div class="col-lg-4 col-md-6 col-12">        
-        <input class="itemMenuDiv" type="submit" value="Menu Items">
+    <div class="col-lg-4 col-md-6 col-12">
+        <input class="itemMenuDiv" type="button" value="Menu Items" onclick="location.href='../MenuItems';">
     </div>
     <div class="col-lg-4 col-md-12 col-12">
-        <input class="itemMenuDiv" type="submit" value="Users">        
+        <input class="itemMenuDiv" type="button" value="Users" onclick="location.href='../Users';">
     </div>
 </div>
 

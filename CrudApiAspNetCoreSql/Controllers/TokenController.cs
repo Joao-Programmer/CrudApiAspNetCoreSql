@@ -21,6 +21,7 @@ using System.Threading.Tasks;
 namespace CrudApiAspNetCoreSql.Controllers
 {
     [Route("[controller]")]
+    [Authorize]
     public class TokenController : Controller
     {
         public IConfiguration _configuration;
@@ -34,19 +35,22 @@ namespace CrudApiAspNetCoreSql.Controllers
 
         // GET: Token
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View("Login");
         }
 
         // GET: Token/Menu
-        [HttpGet("/Token/Menu")]
-        public async Task<IActionResult> Menu()
+        
+        [HttpGet("/Token/Menu")]        
+        public IActionResult Menu()
         {
             return View("Menu");
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> CreateToken([Bind("UserName,UserPassword")] User _user)
         {
             if (_user != null && _user.UserName != null && _user.UserPassword != null)
@@ -61,6 +65,7 @@ namespace CrudApiAspNetCoreSql.Controllers
                     new Claim(JwtRegisteredClaimNames.Sub, _configuration["JwtConfig:Subject"]),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
+                    new Claim(ClaimTypes.Name, user.UserFullName),
                     new Claim("UserId", user.UserId.ToString()),
                     new Claim("UserFullName", user.UserFullName),
                     new Claim("UserName", user.UserName),
@@ -106,6 +111,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         [HttpGet("/Token/Logoff")]
+        [AllowAnonymous]
         public IActionResult Logoff()
         {
             HttpContext.Session.Clear();
