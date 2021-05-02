@@ -2,6 +2,7 @@
 using CrudApiAspNetCoreSql.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -24,7 +25,6 @@ namespace CrudApiAspNetCoreSql.Controllers
     {
         public IConfiguration _configuration;
         public readonly AppDbContext _context;
-        private static readonly HttpClient httpClient = new HttpClient();
 
         public TokenController(IConfiguration config, AppDbContext context)
         {
@@ -40,12 +40,9 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // GET: Token/Menu
-        [Authorize]
         [HttpGet("/Token/Menu")]
         public async Task<IActionResult> Menu()
         {
-            //string accessToken = await HttpContext.GetTokenAsync("access_token");
-            var accessToken = Request.Headers[HeaderNames.Authorization];
             return View("Menu");
         }
 
@@ -71,26 +68,25 @@ namespace CrudApiAspNetCoreSql.Controllers
                 };
 
                     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtConfig:Key"]));
+                    var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
 
-                    var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-                    var token = new JwtSecurityToken(_configuration["JwtConfig:Issuer"], _configuration["JwtConfig:Audience"], claims, expires: DateTime.UtcNow.AddDays(1), signingCredentials: signIn);
+                    var token = new JwtSecurityToken(
+                        issuer: _configuration["JwtConfig:Issuer"], 
+                        audience: _configuration["JwtConfig:Audience"], 
+                        claims: claims,
+                        notBefore: new DateTimeOffset(DateTime.Now).DateTime,
+                        expires: new DateTimeOffset(DateTime.Now.AddDays(1)).DateTime,
+                        signingCredentials: signIn
+                        );
 
                     // return Ok(new JwtSecurityTokenHandler().WriteToken(token)); // USANDO POSTMAN: Retorna o token como uma resposta do servidor, daí tem que copiar esse token e colocar como uma parâmetro no header > authentication > bearer + token para acessar os métodos da API que tenham o [Authorize]
 
                     string accessToken = new JwtSecurityTokenHandler().WriteToken(token);
 
-                    var request = new HttpRequestMessage(HttpMethod.Get, "https://localhost:44337/Token/Menu");
-                    request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-                    HttpResponseMessage response = await httpClient.SendAsync(request);
+                    //Save token in session object
+                    HttpContext.Session.SetString("JWToken", accessToken);
 
-                    if (response.StatusCode != HttpStatusCode.OK)
-                    {
-                        return Content(response.ToString());
-                    }
-                    
                     return RedirectToAction("Menu", "Token");
-
                 }
                 else
                 {
@@ -101,15 +97,21 @@ namespace CrudApiAspNetCoreSql.Controllers
             {
                 return BadRequest("Please enter your login and password!");
             }
-
         }
 
-        [HttpGet("/Users/GetUser")]
+        [HttpGet("/Token/GetUser")]
         private async Task<User> GetUser(string username, string password)
         {
             return _context.User.FirstOrDefault(u => u.UserName == username && u.UserPassword == password);
         }
-            
+
+        [HttpGet("/Token/Logoff")]
+        public IActionResult Logoff()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login", "Token");
+        }
+
     }
     
 }

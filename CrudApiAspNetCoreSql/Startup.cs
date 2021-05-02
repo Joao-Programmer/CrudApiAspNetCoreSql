@@ -2,12 +2,14 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System;
 using System.Linq;
 using System.Text;
 
@@ -28,6 +30,7 @@ namespace CrudApiAspNetCoreSql
 
             // services.AddControllers();
             services.AddControllersWithViews();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CrudApiAspNetCoreSql", Version = "v1" });
@@ -37,17 +40,33 @@ namespace CrudApiAspNetCoreSql
             services.AddDbContext<AppDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DB_RestaurantAPI")));
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            services.AddSession(options =>
             {
-                options.RequireHttpsMetadata = false;
-                options.SaveToken = true;
-                options.TokenValidationParameters = new TokenValidationParameters()
+                options.IdleTimeout = TimeSpan.FromMinutes(60);
+            });
+
+            services.AddMvc();
+
+            services.AddAuthentication(auth =>
+            {
+                auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(token =>
+            {
+                token.RequireHttpsMetadata = false;
+                token.SaveToken = true;
+                token.TokenValidationParameters = new TokenValidationParameters()
                 {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtConfig:Key"])),
                     ValidateIssuer = true,
+                    ValidIssuer = Configuration["JwtConfig:Issuer"],
                     ValidateAudience = true,
                     ValidAudience = Configuration["JwtConfig:Audience"],
-                    ValidIssuer = Configuration["JwtConfig:Issuer"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtConfig:Key"]))
+                    RequireExpirationTime = true,
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.Zero
                 };
             });
 
@@ -68,13 +87,28 @@ namespace CrudApiAspNetCoreSql
 
             app.UseHttpsRedirection();
 
-            app.UseRouting();
+            app.UseRouting();    
+
+            app.UseStaticFiles();
+
+            app.UseCookiePolicy();
+            
+            app.UseSession();
+
+            // Add JWToken to all incoming HTTP Request Header
+            app.Use(async (context, next) =>
+            {
+                var JWToken = context.Session.GetString("JWToken");
+                if (!string.IsNullOrEmpty(JWToken))
+                {
+                    context.Request.Headers.Add("Authorization", "Bearer " + JWToken);
+                }
+                await next();
+            });
 
             app.UseAuthentication();
 
             app.UseAuthorization();            
-
-            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {
