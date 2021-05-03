@@ -42,11 +42,19 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // GET: Token/Menu
-        
+        [Authorize]
         [HttpGet("/Token/Menu")]        
         public IActionResult Menu()
         {
             return View("Menu");
+        }
+
+        // GET: Token/MenuAction
+        [Authorize]
+        [HttpGet("/Token/MenuAction")]
+        public IActionResult MenuAction(string method, string controller)
+        {
+            return RedirectToAction(method, controller);
         }
 
         [HttpPost]
