@@ -1,20 +1,18 @@
-﻿/* ----------------------- Footer ------------------------ */
-#footerDiv {
-    
+﻿/* ----------------------- Header ------------------------ */
+
+#headerDiv{
+    margin-top: 10px;    
+    background-color: cyan
 }
 
-#itemLeftFooterDiv {
-    width: 25%;
-    margin-left: 5%;
-    position: relative;
+#itemLeftHeaderDiv {    
+    background-color: greenyellow
 }
 
-#itemRightFooterDiv {
-    width: 65%;
-    margin-right: 5%;
-    position: relative;
+#itemRightHeaderDiv {    
     text-align: right;
     font-weight: bold;
+    background-color: orange
 }
 
 /* ----------------------- Login ------------------------ */

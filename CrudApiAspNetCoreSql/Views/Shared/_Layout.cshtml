@@ -1,6 +1,4 @@
-﻿
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -15,25 +13,43 @@
     <partial name="_CookieConsentPartial" />
 
     <div class="container body-content">
+
+        <div id="headerDiv" class="row">
+            <div id="itemLeftHeaderDiv" class="col-2">
+                @*@Html.ActionLink("Home", "Menu", "Token", null, new { @class = "btn btn-outline-info btn-sm" })*@
+                @Html.ActionLink("", "Menu", "Token", null, new { @class = "fas fa-home fa-3x" })
+                
+            </div>
+            <div id="itemRightHeaderDiv" class="col-10">
+                <div>
+                    @{
+                        var claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
+
+                        if (claimsIdentity != null)
+                        {
+                            var name = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.Name);
+
+                            if (name != null)
+                            {
+                                <p>
+                                    User: <span>
+                                        @name.Value.ToString()
+                                        &nbsp;&nbsp;&nbsp;
+                                    </span>
+                                    @Html.ActionLink("Log Off", "Logoff", "Token", null, new { @class = "btn btn-outline-danger btn-sm" })
+                                </p>
+                            }
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+
         @RenderBody()
         <hr />
         <footer>
-
-            <div id="footerDiv" class="row">
-                <div id="itemLeftFooterDiv">
-                    <p>&copy; 2021 - Restaurant API</p>
-                </div>
-                <div id="itemRightFooterDiv">
-
-                    @*@if (User.Identity.IsAuthenticated)
-                    {
-                        <div>
-                            User: <span>@User.Identity.Name &nbsp;&nbsp;&nbsp;</span>
-                            @Html.ActionLink("Log Off", "Logoff", "Token", null, new { @class = "btn btn-outline-danger btn-sm" })
-                        </div>
-                    }*@
-                </div>
-            </div>
+            <p>&copy; 2021 - Restaurant API</p>
         </footer>
     </div>
 
