@@ -15,35 +15,31 @@
     <div class="container body-content">
 
         <div id="headerDiv" class="row">
-            <div id="itemLeftHeaderDiv" class="col-2">
-                @*@Html.ActionLink("Home", "Menu", "Token", null, new { @class = "btn btn-outline-info btn-sm" })*@
+            <div id="btnHome" class="col-1">
                 @Html.ActionLink("", "Menu", "Token", null, new { @class = "fas fa-home fa-3x" })
-                
             </div>
-            <div id="itemRightHeaderDiv" class="col-10">
-                <div>
-                    @{
-                        var claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
+            <div class="col-1">
+                @Html.ActionLink("", "Logoff", "Token", null, new { @class = "fas fa-sign-out-alt fa-3x", @id = "btnLogoff" })
+            </div>
+            <div id="txtTitle" class="col10 text-center">
+                <h1 class="title">Substituir</h1>
+            </div>
+        </div>
 
-                        if (claimsIdentity != null)
-                        {
-                            var name = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.Name);
+        <div id="txtUser">
+            @{
+                var claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
 
-                            if (name != null)
-                            {
-                                <p>
-                                    User: <span>
-                                        @name.Value.ToString()
-                                        &nbsp;&nbsp;&nbsp;
-                                    </span>
-                                    @Html.ActionLink("Log Off", "Logoff", "Token", null, new { @class = "btn btn-outline-danger btn-sm" })
-                                </p>
-                            }
-                        }
+                if (claimsIdentity != null)
+                {
+                    var name = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.Name);
+
+                    if (name != null)
+                    {
+                        <p>User: @name.Value.ToString()</p>
                     }
-
-                </div>
-            </div>
+                }
+            }
         </div>
 
         @RenderBody()
