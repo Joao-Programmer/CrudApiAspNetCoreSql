@@ -67,3 +67,22 @@ function onlyDecimalNumber(obj, e) {
     if (tecla == 44) { if (indexvir !== -1 || indexpon !== -1) { return false } }
     if (tecla == 46) { if (indexvir !== -1 || indexpon !== -1) { return false } }
 }
+
+(function (global) {
+
+    var dc = {};
+
+    // Convenience function for inserting innerHTML for 'select'
+    var insertHtml = function (selector, html) {
+        var targetElem = document.querySelector(selector);
+        targetElem.innerHTML = html;
+    };
+
+    dc.loadTitle = function (txtTitle, selector) {
+        html = "<h1 class='title'>" + txtTitle + "</h1>"
+        insertHtml(selector, html);
+    }
+
+    global.$dc = dc;
+
+})(window);

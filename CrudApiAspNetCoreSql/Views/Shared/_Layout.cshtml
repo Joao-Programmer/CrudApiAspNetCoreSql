@@ -15,31 +15,31 @@
     <div class="container body-content">
 
         <div id="headerDiv" class="row">
-            <div id="btnHome" class="col-1">
+            <div id="btnHome" class="col-4">
                 @Html.ActionLink("", "Menu", "Token", null, new { @class = "fas fa-home fa-3x" })
+            </div>
+            <div id="txtTitle" class="col14 text-center">
+                @*Cada página irá inserir seu título*@
+                <input class="btn-dark btn-outline-primary" type="button" value="Carregar Title" onclick="$dc.loadTitle('Menu', '#txtTitle');">
+            </div>
+            <div id="txtUser" class="col-3">
+                @{
+                    var claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
+
+                    if (claimsIdentity != null)
+                    {
+                        var name = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.Name);
+
+                        if (name != null)
+                        {
+                            <p>User: @name.Value.ToString()</p>
+                        }
+                    }
+                }
             </div>
             <div class="col-1">
                 @Html.ActionLink("", "Logoff", "Token", null, new { @class = "fas fa-sign-out-alt fa-3x", @id = "btnLogoff" })
             </div>
-            <div id="txtTitle" class="col10 text-center">
-                <h1 class="title">Substituir</h1>
-            </div>
-        </div>
-
-        <div id="txtUser">
-            @{
-                var claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
-
-                if (claimsIdentity != null)
-                {
-                    var name = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.Name);
-
-                    if (name != null)
-                    {
-                        <p>User: @name.Value.ToString()</p>
-                    }
-                }
-            }
         </div>
 
         @RenderBody()
