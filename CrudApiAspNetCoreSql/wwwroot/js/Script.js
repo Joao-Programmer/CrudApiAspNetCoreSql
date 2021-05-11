@@ -79,7 +79,7 @@ function onlyDecimalNumber(obj, e) {
     };
 
     dc.loadTitle = function (txtTitle, selector) {
-        html = "<h1 class='title'>" + txtTitle + "</h1>"
+        var html = "<h1 class='title'>" + txtTitle + "</h1>"
         insertHtml(selector, html);
     }
 

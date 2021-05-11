@@ -4,63 +4,65 @@
     ViewData["Title"] = "Index";
 }
 
-<h1 class="text-center title">Index</h1>
+<body onload="$dc.loadTitle('Category - Index', '#txtTitle');">
+    <hr />
 
-<p>
-    <a asp-action="Create" class="btn btn-primary">Create New</a>
-</p>
-<table class="table table-striped">
-    <thead class="thead-dark">
-        <tr>
-            <th>
-                ID
-            </th>
-            <th>
-                Short Name
-            </th>
-            <th>
-                Name
-            </th>
-            <th>
-                Special Instructions
-            </th>
-            <th>
-                Url
-            </th>
-            <th>
-                Create Date
-            </th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Create New</a>
+    </p>
+    <table class="table table-striped">
+        <thead class="thead-dark">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CategoryId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CategoryShortName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CategoryName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CategorySpecialInstructions)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CategoryUrl)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CategoryCreateDate)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.CategoryId">    <i class="fa fa-pencil-alt fa-sm"></i></a>
-                    <a asp-action="Details" asp-route-id="@item.CategoryId"> <i class="fa fa-search fa-sm"></i></a>
-                    <a asp-action="Delete" asp-route-id="@item.CategoryId">  <i class="fa fa-trash-alt fa-sm"></i></a>
-                </td>                
+                <th>
+                    ID
+                </th>
+                <th>
+                    Short Name
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Special Instructions
+                </th>
+                <th>
+                    Url
+                </th>
+                <th>
+                    Create Date
+                </th>
+                <th>Actions</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryShortName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategorySpecialInstructions)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryUrl)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryCreateDate)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.CategoryId">    <i class="fa fa-pencil-alt fa-sm"></i></a>
+                        <a asp-action="Details" asp-route-id="@item.CategoryId"> <i class="fa fa-search fa-sm"></i></a>
+                        <a asp-action="Delete" asp-route-id="@item.CategoryId">  <i class="fa fa-trash-alt fa-sm"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>

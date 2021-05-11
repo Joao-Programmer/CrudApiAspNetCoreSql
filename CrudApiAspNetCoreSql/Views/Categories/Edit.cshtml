@@ -4,45 +4,47 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1 class="text-center title">Edit</h1>
 
-<h4>Category</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="CategoryId" />
-            <div class="form-group">
-                <label class="control-label">Short Name</label>
-                <input asp-for="CategoryShortName" class="form-control" />
-                <span asp-validation-for="CategoryShortName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label  class="control-label">Name</label>
-                <input asp-for="CategoryName" class="form-control" />
-                <span asp-validation-for="CategoryName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Special Instructions</label>
-                <input asp-for="CategorySpecialInstructions" class="form-control" />
-                <span asp-validation-for="CategorySpecialInstructions" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Url</label>
-                <input asp-for="CategoryUrl" class="form-control" />
-                <span asp-validation-for="CategoryUrl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<body onload="$dc.loadTitle('Category - Edit', '#txtTitle');">
+    <hr />
+
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="CategoryId" />
+                <div class="form-group">
+                    <label class="control-label">Short Name</label>
+                    <input asp-for="CategoryShortName" class="form-control" />
+                    <span asp-validation-for="CategoryShortName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Name</label>
+                    <input asp-for="CategoryName" class="form-control" />
+                    <span asp-validation-for="CategoryName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Special Instructions</label>
+                    <input asp-for="CategorySpecialInstructions" class="form-control" />
+                    <span asp-validation-for="CategorySpecialInstructions" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Url</label>
+                    <input asp-for="CategoryUrl" class="form-control" />
+                    <span asp-validation-for="CategoryUrl" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-</div>
+    <div>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+
+</body>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

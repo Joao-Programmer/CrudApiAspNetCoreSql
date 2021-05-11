@@ -4,25 +4,27 @@
     ViewData["Title"] = "Login";
 }
 
-<h1 class="text-center title">Login</h1>
+<body onload="$dc.loadTitle('Login', '#txtTitle');">
 
-<hr />
+    <hr />
 
-<div id="loginDiv">
-    <form asp-action="CreateToken" id="loginForm" class="text-center">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <p class="font-weight-bold"> Please enter your login and password!</p>
-        <div class="form-group">
-            <input asp-for="UserName" type="text" placeholder="Username" class="form-control">
-        </div>
-        <div class="form-group">
-            <input asp-for="UserPassword" type="password" placeholder="Password" class="form-control">
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Login">
-        </div>
-    </form>
-</div>
+    <div id="loginDiv">
+        <form asp-action="CreateToken" id="loginForm" class="text-center">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <p class="font-weight-bold"> Please enter your login and password!</p>
+            <div class="form-group">
+                <input asp-for="UserName" type="text" placeholder="Username" class="form-control">
+            </div>
+            <div class="form-group">
+                <input asp-for="UserPassword" type="password" placeholder="Password" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login">
+            </div>
+        </form>
+    </div>
+
+</body>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

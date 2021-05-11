@@ -4,47 +4,48 @@
     ViewData["Title"] = "Details";
 }
 
-<h1 class="text-center title">Details</h1>
 
-<div>
-    <h4>Category</h4>
+<body onload="$dc.loadTitle('Category - Details', '#txtTitle');">
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2 text-right">
-            Short Name:
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CategoryShortName)
-        </dd>
-        <dt class="col-sm-2 text-right">
-            Name:
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CategoryName)
-        </dd>
-        <dt class="col-sm-2 text-right">
-            Special Instructions:
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CategorySpecialInstructions)
-        </dd>
-        <dt class="col-sm-2 text-right">
-            Url:
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CategoryUrl)
-        </dd>
-        <dt class="col-sm-2 text-right">
-            Create Date:
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CategoryCreateDate)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.CategoryId" class="btn btn-primary">Edit</a>
-</div>
-<div class="marginTop10px">
-    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-</div>
+
+    <div>
+        <dl class="row">
+            <dt class="col-sm-2 text-right">
+                Short Name:
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CategoryShortName)
+            </dd>
+            <dt class="col-sm-2 text-right">
+                Name:
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CategoryName)
+            </dd>
+            <dt class="col-sm-2 text-right">
+                Special Instructions:
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CategorySpecialInstructions)
+            </dd>
+            <dt class="col-sm-2 text-right">
+                Url:
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CategoryUrl)
+            </dd>
+            <dt class="col-sm-2 text-right">
+                Create Date:
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CategoryCreateDate)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.CategoryId" class="btn btn-primary">Edit</a>
+    </div>
+    <div class="marginTop10px">
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</body>
