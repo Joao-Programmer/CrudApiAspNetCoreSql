@@ -83,6 +83,11 @@ function onlyDecimalNumber(obj, e) {
         insertHtml(selector, html);
     }
 
+    dc.cleanTag = function (selector) {
+        var html = ""
+        insertHtml(selector, html);
+    }
+
     global.$dc = dc;
 
 })(window);

@@ -4,57 +4,59 @@
     ViewData["Title"] = "Index";
 }
 
-<h1 class="text-center title">Index</h1>
+<body onload="$dc.loadTitle('User - Index', '#txtTitle');">
+    <hr />
 
-<p>
-    <a asp-action="Create" class="btn btn-primary">Create New</a>
-</p>
-<table class="table table-striped">
-    <thead class="thead-dark">
-        <tr>
-            <th>
-                ID
-            </th>
-            <th>
-                Full Name
-            </th>
-            <th>
-                Name
-            </th>
-            <th>
-                Email
-            </th>
-            <th>
-                Create Date
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserFullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserEmail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserCreateDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.UserId">    <i class="fa fa-pencil-alt fa-sm"></i></a>
-                <a asp-action="Details" asp-route-id="@item.UserId"> <i class="fa fa-search fa-sm"></i></a>
-                <a asp-action="Delete" asp-route-id="@item.UserId">  <i class="fa fa-trash-alt fa-sm"></i></a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Create New</a>
+    </p>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Full Name
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Create Date
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserFullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserEmail)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserCreateDate)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.UserId">    <i class="fa fa-pencil-alt fa-sm"></i></a>
+                        <a asp-action="Details" asp-route-id="@item.UserId"> <i class="fa fa-search fa-sm"></i></a>
+                        <a asp-action="Delete" asp-route-id="@item.UserId">  <i class="fa fa-trash-alt fa-sm"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>

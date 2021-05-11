@@ -4,41 +4,41 @@
     ViewData["Title"] = "Details";
 }
 
-<h1 class="text-center title">Details</h1>
-
-<div>
-    <h4>User</h4>
+<body onload="$dc.loadTitle('User - Details', '#txtTitle');">
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2 text-right">
-            Full Name:
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UserFullName)
-        </dd>
-        <dt class = "col-sm-2 text-right">
-            Name:
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-        <dt class = "col-sm-2 text-right">
-            Email:
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UserEmail)
-        </dd>
-        <dt class = "col-sm-2 text-right">
-            Create Date:
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UserCreateDate)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.UserId" class="btn btn-primary">Edit</a>
-</div>
-<div class="marginTop10px">
-    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-</div>
+
+    <div>
+        <dl class="row">
+            <dt class="col-sm-2 text-right">
+                Full Name:
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UserFullName)
+            </dd>
+            <dt class="col-sm-2 text-right">
+                Name:
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UserName)
+            </dd>
+            <dt class="col-sm-2 text-right">
+                Email:
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UserEmail)
+            </dd>
+            <dt class="col-sm-2 text-right">
+                Create Date:
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UserCreateDate)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.UserId" class="btn btn-primary">Edit</a>
+    </div>
+    <div class="marginTop10px">
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</body>

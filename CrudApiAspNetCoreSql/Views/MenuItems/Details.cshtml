@@ -4,11 +4,9 @@
     ViewData["Title"] = "Details";
 }
 
-<h1 class="text-center title">Details</h1>
-
-<div>
-    <h4>MenuItem</h4>
+<body onload="$dc.loadTitle('Menu Item - Details', '#txtTitle');">
     <hr />
+
     <dl class="row">
         <dt class="col-sm-2 text-right">
             ID:
@@ -65,10 +63,10 @@
             @Html.DisplayFor(model => model.MenuItemCategory.CategoryId)
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.MenuItemID" class="btn btn-primary">Edit</a>
-</div>
-<div class="marginTop10px">
-    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-</div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.MenuItemID" class="btn btn-primary">Edit</a>
+    </div>
+    <div class="marginTop10px">
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</body>

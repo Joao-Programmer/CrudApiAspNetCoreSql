@@ -4,65 +4,65 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1 class="text-center title">Edit</h1>
+<body onload="$dc.loadTitle('Menu Item - Edit', '#txtTitle');">
+    <hr />
 
-<h4>MenuItem</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="MenuItemID" />
-            <div class="form-group">
-                <label class="control-label">Short Name</label>
-                <input asp-for="MenuItemShortName" class="form-control" />
-                <span asp-validation-for="MenuItemShortName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Name</label>
-                <input asp-for="MenuItemName" class="form-control" />
-                <span asp-validation-for="MenuItemName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Description</label>
-                <input asp-for="MenuItemDescription" class="form-control" />
-                <span asp-validation-for="MenuItemDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Small Portion Name</label>
-                <input asp-for="MenuItemSmallPortionName" class="form-control" />
-                <span asp-validation-for="MenuItemSmallPortionName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Large Portion Name</label>
-                <input asp-for="MenuItemLargePortionName" class="form-control" />
-                <span asp-validation-for="MenuItemLargePortionName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Price Small</label>
-                <input asp-for="MenuItemPriceSmall" class="form-control" onblur="this.value = currencyFormat(this.value);" onkeypress="return onlyDecimalNumber( this , event );" />
-                <span asp-validation-for="MenuItemPriceSmall" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Price Large</label>
-                <input asp-for="MenuItemPriceLarge" class="form-control" onblur="this.value = currencyFormat(this.value);" onkeypress="return onlyDecimalNumber( this , event );" />
-                <span asp-validation-for="MenuItemPriceLarge" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Category</label>
-                <select asp-for="MenuItemCategoryIdFk" class="form-control" asp-items="ViewBag.MenuItemCategoryIdFk"></select>
-                <span asp-validation-for="MenuItemCategoryIdFk" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="MenuItemID" />
+                <div class="form-group">
+                    <label class="control-label">Short Name</label>
+                    <input asp-for="MenuItemShortName" class="form-control" />
+                    <span asp-validation-for="MenuItemShortName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Name</label>
+                    <input asp-for="MenuItemName" class="form-control" />
+                    <span asp-validation-for="MenuItemName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Description</label>
+                    <input asp-for="MenuItemDescription" class="form-control" />
+                    <span asp-validation-for="MenuItemDescription" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Small Portion Name</label>
+                    <input asp-for="MenuItemSmallPortionName" class="form-control" />
+                    <span asp-validation-for="MenuItemSmallPortionName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Large Portion Name</label>
+                    <input asp-for="MenuItemLargePortionName" class="form-control" />
+                    <span asp-validation-for="MenuItemLargePortionName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Price Small</label>
+                    <input asp-for="MenuItemPriceSmall" class="form-control" onblur="this.value = currencyFormat(this.value);" onkeypress="return onlyDecimalNumber( this , event );" />
+                    <span asp-validation-for="MenuItemPriceSmall" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Price Large</label>
+                    <input asp-for="MenuItemPriceLarge" class="form-control" onblur="this.value = currencyFormat(this.value);" onkeypress="return onlyDecimalNumber( this , event );" />
+                    <span asp-validation-for="MenuItemPriceLarge" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Category</label>
+                    <select asp-for="MenuItemCategoryIdFk" class="form-control" asp-items="ViewBag.MenuItemCategoryIdFk"></select>
+                    <span asp-validation-for="MenuItemCategoryIdFk" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-</div>
+    <div>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</body>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

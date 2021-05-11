@@ -16,12 +16,12 @@
 
         <div id="headerDiv" class="row">
             <div id="btnHome" class="col-4">
-                @Html.ActionLink("", "Menu", "Token", null, new { @class = "fas fa-home fa-3x" })
+                @Html.ActionLink("", "Menu", "Token", null, new { @class = "fas fa-home fa-2x" })
             </div>
             <div id="txtTitle" class="col-4 text-center">
-                @*Cada página irá inserir seu título*@                
+                @*Cada página irá inserir seu título*@
             </div>
-            <div id="txtUser" class="col-3">
+            <div id="txtUser" class="col-4 text-right">
                 @{
                     var claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
 
@@ -31,13 +31,11 @@
 
                         if (name != null)
                         {
-                            <p>User: @name.Value.ToString()</p>
+                            <span>User: @name.Value.ToString()</span>
+                            @Html.ActionLink("", "Logoff", "Token", null, new { @class = "fas fa-sign-out-alt fa-2x", @id = "btnLogoff" })
                         }
                     }
                 }
-            </div>
-            <div class="col-1">
-                @Html.ActionLink("", "Logoff", "Token", null, new { @class = "fas fa-sign-out-alt fa-3x", @id = "btnLogoff" })
             </div>
         </div>
 

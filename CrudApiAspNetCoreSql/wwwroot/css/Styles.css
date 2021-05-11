@@ -9,14 +9,19 @@
 }
 
 #txtUser {
-    text-align: right;
-    font-weight: bold;    
+    
 }
+    #txtUser span {
+        font-weight: bold;
+        font-size: 0.9em;
+        color: rgb(148 16 16);
+        text-decoration: underline;
+        padding-right: 10px;
+    }
 
-#btnLogoff {
-    color: red;
-    text-align: right;
-}
+    #btnLogoff {
+        color: rgb(148 16 16);
+    }
 
 /* ----------------------- Login ------------------------ */
 #loginForm {
