@@ -10,18 +10,25 @@
     <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
 </head>
 <body>
-    <partial name="_CookieConsentPartial" />
+    <partial name="_CookieConsentPartial" />    
 
-    <div class="container body-content">
+    <div class="container body-content">        
 
-        <div id="headerDiv" class="row">
-            <div id="btnHome" class="col-4">
+        <div id="headerDiv" class="row">            
+
+            <div id="btnHome" class="col-2">
                 @Html.ActionLink("", "Menu", "Token", null, new { @class = "fas fa-home fa-2x" })
             </div>
-            <div id="txtTitle" class="col-4 text-center">
+
+            <div id="txtTitle" class="col-8 text-center">
                 @*Cada página irá inserir seu título*@
             </div>
-            <div id="txtUser" class="col-4 text-right">
+
+            <div id="txtUser" class="col-2 text-right">
+                @Html.ActionLink("", "Logoff", "Token", null, new { @class = "fas fa-sign-out-alt fa-2x", @id = "btnLogoff" })
+            </div>
+
+            <div id="txtUser" class="col-12 text-right">
                 @{
                     var claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
 
@@ -31,8 +38,7 @@
 
                         if (name != null)
                         {
-                            <span>User: @name.Value.ToString()</span>
-                            @Html.ActionLink("", "Logoff", "Token", null, new { @class = "fas fa-sign-out-alt fa-2x", @id = "btnLogoff" })
+                            <span>User: @name.Value.ToString()</span>                            
                         }
                     }
                 }
