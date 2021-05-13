@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<body onload="$dc.loadTitle('Menu Item - Index', '#txtTitle');">
+<body onload="$dc.loadTitle('Menu Item - Index', '#divTitle');">
     <hr />
 
     <p>
@@ -22,25 +22,25 @@
                 <th>
                     Name
                 </th>
-                <th>
+                <th class="displayNoneMax768 displayNoneMax992">
                     Description
                 </th>
-                <th>
+                <th class="displayNoneMax768 displayNoneMax992">
                     Small Portion Name
                 </th>
-                <th>
+                <th class="displayNoneMax768 displayNoneMax992">
                     Large Portion Name
                 </th>
-                <th>
+                <th class="displayNoneMax768">
                     Price Small
                 </th>
-                <th>
+                <th class="displayNoneMax768">
                     Price Large
                 </th>
-                <th>
+                <th class="displayNoneMax768 displayNoneMax992">
                     Category ID
                 </th>
-                <th>
+                <th class="displayNoneMax768">
                     Category Name
                 </th>
                 <th>Actions</th>
@@ -59,25 +59,25 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.MenuItemName)
                     </td>
-                    <td>
+                    <td class="displayNoneMax768 displayNoneMax992">
                         @Html.DisplayFor(modelItem => item.MenuItemDescription)
                     </td>
-                    <td>
+                    <td class="displayNoneMax768 displayNoneMax992">
                         @Html.DisplayFor(modelItem => item.MenuItemSmallPortionName)
                     </td>
-                    <td>
+                    <td class="displayNoneMax768 displayNoneMax992"> 
                         @Html.DisplayFor(modelItem => item.MenuItemLargePortionName)
                     </td>
-                    <td>
+                    <td class="displayNoneMax768">
                         @Html.DisplayFor(modelItem => item.MenuItemPriceSmall)
                     </td>
-                    <td>
+                    <td class="displayNoneMax768">
                         @Html.DisplayFor(modelItem => item.MenuItemPriceLarge)
                     </td>
-                    <td>
+                    <td class="displayNoneMax768 displayNoneMax992">
                         @Html.DisplayFor(modelItem => item.MenuItemCategory.CategoryId)
                     </td>
-                    <td>
+                    <td class="displayNoneMax768">
                         @Html.DisplayFor(modelItem => item.MenuItemCategory.CategoryName)
                     </td>
                     <td>

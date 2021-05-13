@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<body onload="$dc.loadTitle('User - Index', '#txtTitle');">
+<body onload="$dc.loadTitle('User - Index', '#divTitle');">
     <hr />
 
     <p>
@@ -22,10 +22,10 @@
                 <th>
                     Name
                 </th>
-                <th>
+                <th class="displayNoneMax768">
                     Email
                 </th>
-                <th>
+                <th class="displayNoneMax768">
                     Create Date
                 </th>
                 <th></th>
@@ -44,10 +44,10 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.UserName)
                     </td>
-                    <td>
+                    <td class="displayNoneMax768">
                         @Html.DisplayFor(modelItem => item.UserEmail)
                     </td>
-                    <td>
+                    <td class="displayNoneMax768">
                         @Html.DisplayFor(modelItem => item.UserCreateDate)
                     </td>
                     <td>

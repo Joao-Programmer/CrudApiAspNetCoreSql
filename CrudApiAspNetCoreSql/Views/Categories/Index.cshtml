@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<body onload="$dc.loadTitle('Category - Index', '#txtTitle');">
+<body onload="$dc.loadTitle('Category - Index', '#divTitle');">
     <hr />
 
     <p>
@@ -22,13 +22,13 @@
                 <th>
                     Name
                 </th>
-                <th>
+                <th class="displayNoneMax768">
                     Special Instructions
                 </th>
-                <th>
+                <th class="displayNoneMax768">
                     Url
                 </th>
-                <th>
+                <th class="displayNoneMax768">
                     Create Date
                 </th>
                 <th>Actions</th>
@@ -47,13 +47,13 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.CategoryName)
                     </td>
-                    <td>
+                    <td class="displayNoneMax768">
                         @Html.DisplayFor(modelItem => item.CategorySpecialInstructions)
                     </td>
-                    <td>
+                    <td class="displayNoneMax768">
                         @Html.DisplayFor(modelItem => item.CategoryUrl)
                     </td>
-                    <td>
+                    <td class="displayNoneMax768">
                         @Html.DisplayFor(modelItem => item.CategoryCreateDate)
                     </td>
                     <td>
