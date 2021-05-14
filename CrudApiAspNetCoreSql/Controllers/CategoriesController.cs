@@ -25,9 +25,31 @@ namespace CrudApiAspNetCoreSql.Controllers
         // ---------------------------- USANDO VIEW -----------------------------------
         // GET: Categories
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
-            return View(await _context.Category.ToListAsync());
+            ViewData["IdSortParm"] = String.IsNullOrEmpty(sortOrder) ? "Id_desc" : "";
+            ViewData["NameSortParm"] = sortOrder == "Name" ? "Name_desc" : "Name";
+
+            var categories = from c in _context.Category
+                        select c;
+
+            switch (sortOrder)
+            {
+                case "Id_desc":
+                    categories = categories.OrderByDescending(u => u.CategoryId);
+                    break;
+                case "Name":
+                    categories = categories.OrderBy(u => u.CategoryName);
+                    break;
+                case "Name_desc":
+                    categories = categories.OrderByDescending(u => u.CategoryName);
+                    break;
+                default:
+                    categories = categories.OrderBy(u => u.CategoryId);
+                    break;
+            }
+
+            return View(await categories.AsNoTracking().ToListAsync());
         }
 
         // ---------------------------- USANDO POSTMAN --------------------------------

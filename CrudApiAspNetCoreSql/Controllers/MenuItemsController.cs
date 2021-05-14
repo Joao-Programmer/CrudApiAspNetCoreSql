@@ -25,10 +25,33 @@ namespace CrudApiAspNetCoreSql.Controllers
         // ---------------------------- USANDO VIEW -----------------------------------
         // GET: MenuItems
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
-            var appDbContext = _context.MenuItem.Include(m => m.MenuItemCategory);
-            return View(await appDbContext.ToListAsync());
+            ViewData["IdSortParm"] = String.IsNullOrEmpty(sortOrder) ? "Id_desc" : "";
+            ViewData["NameSortParm"] = sortOrder == "Name" ? "Name_desc" : "Name";
+
+            var menuItems = from m in _context.MenuItem.Include(mc => mc.MenuItemCategory)
+                             select m;
+
+            switch (sortOrder)
+            {
+                case "Id_desc":
+                    menuItems = menuItems.OrderByDescending(u => u.MenuItemID);
+                    break;
+                case "Name":
+                    menuItems = menuItems.OrderBy(u => u.MenuItemName);
+                    break;
+                case "Name_desc":
+                    menuItems = menuItems.OrderByDescending(u => u.MenuItemName);
+                    break;
+                default:
+                    menuItems = menuItems.OrderBy(u => u.MenuItemID);
+                    break;
+            }
+
+            return View(await menuItems.AsNoTracking().ToListAsync());
+
+            //var appDbContext = _context.MenuItem.Include(m => m.MenuItemCategory);
         }
 
         // ---------------------------- USANDO POSTMAN --------------------------------
