@@ -14,10 +14,10 @@
         <thead class="thead-dark">
             <tr>
                 <th>
-                    ID
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["IdSortParm"]">ID</a>
                 </th>
                 <th>
-                    Full Name
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["FullNameSortParm"]">Full Name</a>
                 </th>
                 <th>
                     Name

@@ -25,9 +25,31 @@ namespace CrudApiAspNetCoreSql.Controllers
         // ---------------------------- USANDO VIEW -----------------------------------
         // GET: Users
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
-            return View(await _context.User.ToListAsync());
+            ViewData["IdSortParm"] = String.IsNullOrEmpty(sortOrder) ? "Id_desc" : "";
+            ViewData["FullNameSortParm"] = sortOrder == "FullName" ? "FullName_desc" : "FullName";
+
+            var users = from u in _context.User
+                        select u;
+
+            switch (sortOrder)
+            {
+                case "Id_desc":
+                    users = users.OrderByDescending(u => u.UserId);
+                    break;
+                case "FullName":
+                    users = users.OrderBy(u => u.UserFullName);
+                    break;
+                case "FullName_desc":
+                    users = users.OrderByDescending(u => u.UserFullName);
+                    break;
+                default:
+                    users = users.OrderBy(u => u.UserId);
+                    break;
+            }
+
+            return View(await users.AsNoTracking().ToListAsync());
         }
 
         // ---------------------------- USANDO POSTMAN --------------------------------
