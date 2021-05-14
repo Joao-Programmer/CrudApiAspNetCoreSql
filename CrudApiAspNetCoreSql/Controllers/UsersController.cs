@@ -25,13 +25,18 @@ namespace CrudApiAspNetCoreSql.Controllers
         // ---------------------------- USANDO VIEW -----------------------------------
         // GET: Users
         [HttpGet]
-        public async Task<IActionResult> Index(string sortOrder)
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
             ViewData["IdSortParm"] = String.IsNullOrEmpty(sortOrder) ? "Id_desc" : "";
             ViewData["FullNameSortParm"] = sortOrder == "FullName" ? "FullName_desc" : "FullName";
+            ViewData["CurrentFilter"] = searchString;
 
             var users = from u in _context.User
                         select u;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                users = users.Where(u => u.UserFullName.Contains(searchString) || u.UserName.Contains(searchString));
+            }
 
             switch (sortOrder)
             {
