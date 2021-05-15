@@ -25,13 +25,18 @@ namespace CrudApiAspNetCoreSql.Controllers
         // ---------------------------- USANDO VIEW -----------------------------------
         // GET: Categories
         [HttpGet]
-        public async Task<IActionResult> Index(string sortOrder)
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
             ViewData["IdSortParm"] = String.IsNullOrEmpty(sortOrder) ? "Id_desc" : "";
             ViewData["NameSortParm"] = sortOrder == "Name" ? "Name_desc" : "Name";
+            ViewData["CurrentFilter"] = searchString;
 
             var categories = from c in _context.Category
                         select c;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                categories = categories.Where(c => c.CategoryName.Contains(searchString));
+            }
 
             switch (sortOrder)
             {

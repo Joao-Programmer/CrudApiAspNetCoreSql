@@ -10,6 +10,17 @@
     <p>
         <a asp-action="Create" class="btn btn-primary">Create New</a>
     </p>
+
+    <form asp-action="Index" method="get">
+        <div class="form-group">
+            <p>
+                Find by Name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                <input type="submit" value="Search" class="btn btn-secondary" />
+                <a asp-action="Index">Back to Full List</a>
+            </p>
+        </div>
+    </form>
+
     <table class="table table-striped">
         <thead class="thead-dark">
             <tr>
@@ -65,7 +76,7 @@
                     <td class="displayNoneMax768 displayNoneMax992">
                         @Html.DisplayFor(modelItem => item.MenuItemSmallPortionName)
                     </td>
-                    <td class="displayNoneMax768 displayNoneMax992"> 
+                    <td class="displayNoneMax768 displayNoneMax992">
                         @Html.DisplayFor(modelItem => item.MenuItemLargePortionName)
                     </td>
                     <td class="displayNoneMax768">
