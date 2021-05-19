@@ -53,6 +53,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // ---------------------------- USANDO POSTMAN --------------------------------
+        [AllowAnonymous]
         [HttpGet("/Categories/GetAllCategories")]
         public async Task<ActionResult<IEnumerable<Category>>> GetAllCategories()
         {
@@ -80,6 +81,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // ---------------------------- USANDO POSTMAN --------------------------------
+        [AllowAnonymous]
         [HttpGet("/Categories/GetCategoryId/{id}")]
         public async Task<Category> GetCategoryId(int? id)
         {
