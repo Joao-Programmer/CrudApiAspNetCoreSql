@@ -71,6 +71,15 @@ namespace CrudApiAspNetCoreSql
             });
 
             services.AddRazorPages().AddRazorRuntimeCompilation();
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:3000");
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,7 +96,9 @@ namespace CrudApiAspNetCoreSql
 
             app.UseHttpsRedirection();
 
-            app.UseRouting();    
+            app.UseRouting();
+
+            app.UseCors();
 
             app.UseStaticFiles();
 
