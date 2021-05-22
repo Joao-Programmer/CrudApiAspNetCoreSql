@@ -89,10 +89,18 @@ namespace CrudApiAspNetCoreSql.Controllers
         // ---------------------------- USANDO POSTMAN --------------------------------
         [HttpGet("/MenuItems/GetMenuItemId/{id}")]
         public async Task<MenuItem> GetMenuItemId(int? id)
-        {
+        {            
             var menuItem = await _context.MenuItem.FirstOrDefaultAsync(m => m.MenuItemID == id);
 
             return menuItem;
+        }
+
+        // ---------------------------- USANDO POSTMAN --------------------------------
+        [HttpGet("/MenuItems/GetMenuItemCategory/{shortName}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<MenuItem>>> GetMenuItemCategory(string shortName)
+        {
+            return await _context.MenuItem.Where(m => m.MenuItemCategory.CategoryShortName == shortName).Include(mc => mc.MenuItemCategory).ToListAsync(); 
         }
 
         // GET: MenuItems/Create
