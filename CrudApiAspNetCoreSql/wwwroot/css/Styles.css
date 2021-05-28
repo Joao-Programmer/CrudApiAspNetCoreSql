@@ -137,11 +137,43 @@
     padding-left: 0px;
 }
 
+.images {
+    margin-bottom: 20px;
+}
+
+    .images p {
+        font-weight: 700;
+        background-color: #dee2e6;
+        max-width: 250px;
+        margin: auto;
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+        height: 25px;
+        vertical-align: middle;        
+    }
+
+    .images img {
+        max-width: 250px;
+        border: 4px solid #dee2e6;
+        border-bottom-left-radius: 0.25rem;
+        border-bottom-right-radius: 0.25rem;
+    }
+
 /* ----------------------- Media Queries ------------------------ */
 
 @media (min-width: 450px) {
     #loginForm {
         max-width: 400px;
+    }
+}
+
+@media (max-width: 576px) {
+    dt.text-right {
+        text-align: left !important;
+    }
+
+    dd.col-sm-10 {
+        padding-left: 15px;
     }
 }
 

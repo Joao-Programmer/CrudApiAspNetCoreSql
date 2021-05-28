@@ -63,10 +63,11 @@
             @Html.DisplayFor(model => model.MenuItemCategory.CategoryName)
         </dd>
     </dl>
-    <div class="text-center">
-        @{string pathImage = "images/menu/" + Model.MenuItemCategory.CategoryShortName + "/" + Model.MenuItemShortName + ".jpg";}
+    <div class="images text-center">
+        <p>Image</p>
 
-        <img class="img-fluid img-thumbnail rounded" src="~/@pathImage"/>
+        @{string pathImage = "images/menu/" + Model.MenuItemCategory.CategoryShortName + "/" + Model.MenuItemShortName + ".jpg";}
+        <img class="img-fluid img-thumbnail" src="~/@pathImage"/>
     </div>
     <div>
         <a asp-action="Edit" asp-route-id="@Model.MenuItemID" class="btn btn-primary">Edit</a>
