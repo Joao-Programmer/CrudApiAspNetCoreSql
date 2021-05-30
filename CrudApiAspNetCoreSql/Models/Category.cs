@@ -13,7 +13,7 @@ namespace CrudApiAspNetCoreSql.Models
         public string CategoryShortName { get; set; }
         public string CategoryName { get; set; }
         public string CategorySpecialInstructions { get; set; }
-        public string CategoryUrl { get; set; }
+        public string CategoryImagePath { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime CategoryCreateDate { get; set; }
 

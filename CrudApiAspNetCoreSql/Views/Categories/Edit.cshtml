@@ -9,14 +9,15 @@
 
     if (photo != null)
     {
-        string imagePath = @"images\menu\" + Model.CategoryShortName + "\\" + Model.CategoryShortName + ".jpg";
-        photo.Save(@"~\" + imagePath);
+        string imagePathNew = @"images\menu\" + Model.CategoryShortName + "\\" + Model.CategoryShortName + ".jpg";
+        photo.Save(@"~\" + imagePathNew);
     }
     else
     {
-        string imagePath = @"images\noImageFound.jpg";
-        photo.Save(@"~\" + imagePath);
+        string imagePathNew = @"images\noImageFound.jpg";
+        photo.Save(@"~\" + imagePathNew);
     }
+}
 
     <body onload="$dc.loadTitle('Category - Edit', '#divTitle');">
         <hr />
@@ -53,8 +54,8 @@
                 <p>Image (*.jpg)&nbsp; <i class="fas fa-folder-open fa-2x"></i></p>
             </div>
 
-            @{string imagePathStart = "images/noImageFound.jpg";}
-            <img class="img-fluid img-thumbnail imgCategory" src="~/@imagePathStart" />
+            @{string imagePath = @"images\menu\" + Model.CategoryShortName + "\\" + Model.CategoryShortName + ".jpg";}
+            <img class="img-fluid img-thumbnail imgCategory" src="~/@imagePath" />
         </div>
 
         <div>

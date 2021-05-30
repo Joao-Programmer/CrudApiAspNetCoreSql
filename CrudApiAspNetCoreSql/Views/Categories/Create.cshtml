@@ -4,6 +4,21 @@
     ViewData["Title"] = "Create";
 }
 
+@{ WebImage photo = null;
+    photo = WebImage.GetImageFromRequest();
+
+    if (photo != null)
+    {
+        string imagePathNew = @"images\menu\" + Model.CategoryShortName + "\\" + Model.CategoryShortName + ".jpg";
+        photo.Save(@"~\" + imagePathNew);
+    }
+    else
+    {
+        string imagePathNew = @"images\noImageFound.jpg";
+        photo.Save(@"~\" + imagePathNew);
+    }
+}
+
 
 <body onload="$dc.loadTitle('Category - Create', '#divTitle');">
     <hr />
@@ -28,10 +43,26 @@
                     <span asp-validation-for="CategorySpecialInstructions" class="text-danger"></span>
                 </div>
                 <div class="form-group">
+                    <label class="control-label">Image Path</label>
+                    <input asp-for="CategoryImagePath" class="form-control" />
+                    <span asp-validation-for="CategoryImagePath" class="text-danger"></span>
+                </div>
+                <div class="form-group">
                     <input type="submit" value="Create" class="btn btn-primary" />
                 </div>
             </form>
         </div>
+    </div>
+
+
+    <div class="images text-center">
+        <div class="container">
+            <i class="fas fa-folder-open fa-2x"></i>
+            <p>Image</p>
+        </div>
+
+        @{string imagePath = @"images\menu\" + Model.CategoryShortName + "\\" + Model.CategoryShortName + ".jpg";}
+        <img class="img-fluid img-thumbnail imgCategory" src="~/@imagePath" />
     </div>
 
     <div>

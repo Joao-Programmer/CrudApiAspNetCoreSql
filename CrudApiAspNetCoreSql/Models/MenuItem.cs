@@ -19,6 +19,7 @@ namespace CrudApiAspNetCoreSql.Models
         public decimal MenuItemPriceSmall { get; set; }
         public string MenuItemShortName { get; set; }
         public string MenuItemSmallPortionName { get; set; }
+        public string MenuItemImagePath { get; set; }
 
         [ForeignKey("MenuItemCategory")]
         public int MenuItemCategoryIdFk { get; set; }
