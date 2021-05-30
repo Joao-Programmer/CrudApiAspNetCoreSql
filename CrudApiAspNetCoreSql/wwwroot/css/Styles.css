@@ -145,13 +145,19 @@
 
     .images p {
         font-weight: 700;
+        font-size: 1.2rem;
         margin-bottom: 5px;
     }
 
-    .images img {
-        max-width: 250px;
-        margin-bottom: 10px;
-    }
+.imgMenuItem {
+    max-width: 250px;
+    margin-bottom: 15px;
+}
+
+.imgCategory {
+    max-width: 200px;
+    margin-bottom: 15px;
+}
 
 /* ----------------------- Media Queries ------------------------ */
 
