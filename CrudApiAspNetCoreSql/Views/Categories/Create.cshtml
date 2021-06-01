@@ -5,16 +5,28 @@
 }
 
 @{ WebImage photo = null;
+    var newFileName = "";
+    var imagePath = "";
+
+    if (IsPost)
+    {
+        photo = WebImage.GetImageFromRequest();
+        if (photo != null)
+        {
+            newFileName = Guid.NewGuid().ToString() + "_" +
+                Path.GetFileName(photo.FileName);
+            imagePath = @"images\" + newFileName;
+
+            photo.Save(@"~\" + imagePath);
+        }
+}
+
+@{ WebImage photo = null;
     photo = WebImage.GetImageFromRequest();
 
     if (photo != null)
     {
         string imagePathNew = @"images\menu\" + Model.CategoryShortName + "\\" + Model.CategoryShortName + ".jpg";
-        photo.Save(@"~\" + imagePathNew);
-    }
-    else
-    {
-        string imagePathNew = @"images\noImageFound.jpg";
         photo.Save(@"~\" + imagePathNew);
     }
 }
@@ -45,7 +57,7 @@
                 <div class="form-group">
                     <label class="control-label">Image Path</label>
                     <input asp-for="CategoryImagePath" class="form-control" />
-                    <span asp-validation-for="CategoryImagePath" class="text-danger"></span>
+                    <span asp-validation-for="CategoryImagePath" class="text-danger"><i class="fas fa-folder-open fa-2x"></i></span>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Create" class="btn btn-primary" />
@@ -56,13 +68,20 @@
 
 
     <div class="images text-center">
-        <div class="container">
-            <i class="fas fa-folder-open fa-2x"></i>
+        <div class="container">            
             <p>Image</p>
         </div>
 
-        @{string imagePath = @"images\menu\" + Model.CategoryShortName + "\\" + Model.CategoryShortName + ".jpg";}
-        <img class="img-fluid img-thumbnail imgCategory" src="~/@imagePath" />
+        @{
+            string imagePath = @"images\noImageFound.jpg";
+
+            if (Model.CategoryImagePath != null)
+            {
+                imagePath = Model.CategoryImagePath;
+            }
+            <img class="img-fluid img-thumbnail imgCategory" src="~/@imagePath" />
+        }
+
     </div>
 
     <div>
