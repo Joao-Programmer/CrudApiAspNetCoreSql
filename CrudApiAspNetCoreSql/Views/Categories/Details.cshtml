@@ -42,8 +42,16 @@
             <p>Image</p>
         </div>
 
-        @{string pathImage = "images/menu/" + Model.CategoryShortName + "/" + Model.CategoryShortName + ".jpg";}
-        <img class="img-fluid img-thumbnail imgCategory" src="~/@pathImage"/>
+        @{
+            string imagePathLoad = @"images\noImageFound.jpg";
+
+            if (!String.IsNullOrEmpty(Model.CategoryImagePath))
+            {
+                imagePathLoad = Model.CategoryImagePath;
+            }
+            <img class="img-fluid img-thumbnail imgCategory" src="~/@imagePathLoad" />
+        }
+
     </div>
 
     <div>
