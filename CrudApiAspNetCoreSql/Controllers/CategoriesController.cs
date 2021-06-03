@@ -1,10 +1,12 @@
 ﻿using CrudApiAspNetCoreSql.Data;
 using CrudApiAspNetCoreSql.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,10 +17,12 @@ namespace CrudApiAspNetCoreSql.Controllers
     public class CategoriesController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public CategoriesController(AppDbContext context)
+        public CategoriesController(AppDbContext context, IWebHostEnvironment webHostEnvironment)
         {            
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // ---------------------------- USANDO VIEW -----------------------------------
@@ -113,14 +117,25 @@ namespace CrudApiAspNetCoreSql.Controllers
         // POST: Categories/Create
         [HttpPost("/Categories/Create")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoryId,CategoryShortName,CategoryName,CategorySpecialInstructions,CategoryImagePath,CategoryCreateDate")] Category category)
+        public async Task<IActionResult> Create([Bind("CategoryId,CategoryShortName,CategoryName,CategorySpecialInstructions,CategoryImagePath,CategoryCreateDate,CategoryImageFile")] Category category)
         {
             if (ModelState.IsValid)
             {
+                // Save image to wwwroot/images/category
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+                string fieName = Path.GetFileName(category.CategoryImageFile.FileName);
+                category.CategoryImagePath = Path.Combine(wwwRootPath + "\\images\\category\\", fieName);
+
+                using(var fileStream = new FileStream(category.CategoryImagePath, FileMode.Create))
+                {
+                    await category.CategoryImageFile.CopyToAsync(fileStream);
+                }
+
                 _context.Add(category);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(category);
         }
 
