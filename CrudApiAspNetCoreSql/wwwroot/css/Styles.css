@@ -141,6 +141,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     max-width: 270px;
     margin: 0 auto 20px auto;
+    padding-top:5px;
 }
 
     .images p {
@@ -159,8 +160,20 @@
     margin-bottom: 15px;
 }
 
-/* ----------------------- Media Queries ------------------------ */
+#imgSelFile {
+    display: none;    
+}
 
+#btnSelFile {
+    color: #007bff;
+}
+
+    #btnSelFile:hover {
+        cursor: pointer;
+        color: rgb(1 231 254);
+    }    
+
+/* ----------------------- Media Queries ------------------------ */
 @media (min-width: 450px) {
     #loginForm {
         max-width: 400px;

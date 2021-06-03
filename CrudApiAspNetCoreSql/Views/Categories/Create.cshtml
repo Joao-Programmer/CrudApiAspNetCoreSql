@@ -28,27 +28,29 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label">Image Path</label>
-                    <input asp-for="CategoryImagePath" class="form-control" />
-                    <span asp-validation-for="CategoryImagePath" class="text-danger"><input type="file" name="ImageFile" required /> <i class="fas fa-folder-open fa-2x"></i></span>
+                    <input asp-for="CategoryImagePath" class="form-control" disabled="disabled"/>
+                    <span asp-validation-for="CategoryImagePath" class="text-danger"></span>
+                </div>
+                <div class="form-group images text-center">
+                    <div class="row">
+                        <div class="col-3"></div>
+                        <p class="col-6">Image</p>
+                        <label class="col-3" id="btnSelFile" for="imgSelFile">
+                            <i class="fas fa-folder-open fa-2x"></i>
+                        </label>
+                        <input id="imgSelFile" name="file" type="file" />
+                    </div>
+                    <input asp-for="CategoryImageFile" accept="image/*" />
+                    @{
+                        string imagePathLoad = @"images\noImageFound.jpg";
+                        <img class="img-fluid img-thumbnail imgCategory" src="~/@imagePathLoad" />
+                    }
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Create" class="btn btn-primary" />
                 </div>
             </form>
         </div>
-    </div>
-
-
-    <div class="images text-center">
-        <div class="container">            
-            <p>Image</p>
-        </div>
-
-        @{
-            string imagePathLoad = @"images\noImageFound.jpg";
-            <img class="img-fluid img-thumbnail imgCategory" src="~/@imagePathLoad" />
-        }
-
     </div>
 
     <div>
