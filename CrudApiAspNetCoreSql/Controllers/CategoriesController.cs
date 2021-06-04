@@ -123,10 +123,10 @@ namespace CrudApiAspNetCoreSql.Controllers
             {
                 // Save image to wwwroot/images/category
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
-                string fieName = Path.GetFileName(category.CategoryImageFile.FileName);
-                category.CategoryImagePath = Path.Combine(wwwRootPath + "\\images\\category\\", fieName);
+                category.CategoryImagePath = Path.GetFileName(category.CategoryImageFile.FileName);
+                string completeFileName = Path.Combine(wwwRootPath + "\\images\\category\\", category.CategoryImagePath);
 
-                using(var fileStream = new FileStream(category.CategoryImagePath, FileMode.Create))
+                using(var fileStream = new FileStream(completeFileName, FileMode.Create))
                 {
                     await category.CategoryImageFile.CopyToAsync(fileStream);
                 }

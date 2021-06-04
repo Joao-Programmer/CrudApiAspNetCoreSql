@@ -35,7 +35,7 @@
                 @Html.DisplayFor(model => model.CategoryCreateDate)
             </dd>
             <dt class="col-sm-2 text-right">
-                Image Path:
+                Image Name:
             </dt>
             <dd class="col-sm-10">
                 @Html.DisplayFor(model => model.CategoryImagePath)
@@ -49,13 +49,13 @@
         </div>
 
         @{
-            string imagePathLoad = @"images\noImageFound.jpg";
+            string imagePathLoad = "noImageFound.jpg";
 
             if (!String.IsNullOrEmpty(Model.CategoryImagePath))
             {
                 imagePathLoad = Model.CategoryImagePath;
             }
-            <img class="img-fluid img-thumbnail imgCategory" src="~/@imagePathLoad" />
+            <img class="img-fluid img-thumbnail imgCategory" src="~/images/category/@imagePathLoad"/>
         }
 
     </div>
