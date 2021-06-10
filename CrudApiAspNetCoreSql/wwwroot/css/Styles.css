@@ -145,8 +145,7 @@
 }
 
     .images p {
-        font-weight: 700;
-        font-size: 1.2rem;
+        font-weight: 700;        
         margin-bottom: 5px;
     }
 
@@ -160,11 +159,6 @@
     margin-bottom: 15px;  
 }
 
-#imgSelFile {
-    display: none;    
-}
-
-
 #btnSelFile {
     color: #007bff;
 }
@@ -172,7 +166,11 @@
     #btnSelFile:hover {
         cursor: pointer;
         color: rgb(1 231 254);
-    }    
+    }
+
+#msgErrorInput{
+    color: #aaa;
+}
 
 /* ----------------------- Media Queries ------------------------ */
 @media (min-width: 450px) {

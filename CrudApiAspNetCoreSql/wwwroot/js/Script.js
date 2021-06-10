@@ -68,6 +68,16 @@ function onlyDecimalNumber(obj, e) {
     if (tecla == 46) { if (indexvir !== -1 || indexpon !== -1) { return false } }
 }
 
+function selectFile() {
+    if (document.getElementById('inputFile').value) {
+        document.getElementById('msgErrorInput').innerHTML = document.getElementById('inputFile').value.match(
+            /[\/\\]([\w\d\s\.\-\(\)]+)$/
+        )[1];
+    } else {
+        document.getElementById('msgErrorInput').innerHTML = "No image chosen, yet.";
+    }
+}
+
 (function (global) {
 
     var dc = {};
