@@ -74,8 +74,12 @@ function selectFile() {
             /[\/\\]([\w\d\s\.\-\(\)]+)$/
         )[1];
     } else {
-        document.getElementById('msgErrorInput').innerHTML = "No image chosen, yet.";
+        document.getElementById('msgErrorInput').innerHTML = "noImageFound.jpg";
     }
+}
+
+function selectedFileName(fileName) {
+    return fileName = document.getElementById("msgErrorInput").innerText;
 }
 
 (function (global) {

@@ -39,18 +39,13 @@
                         </label>
 
                         <input type="file" id="inputFile" name="file" hidden="hidden" onchange="selectFile();" asp-for="CategoryImageFile" accept="image/*" />
-                        <span id="msgErrorInput" class="col-12">No image chosen, yet.</span><br /><br />
+                        <span id="msgErrorInput" class="col-12">noImageFound.jpg</span><br /><br />
                         <span asp-validation-for="CategoryImageFile" class="text-danger"></span>
 
                     </div>
 
                     @{
-                        string imagePathLoad = "noImageFound.jpg";
-
-                        //if (!String.IsNullOrEmpty(Model.CategoryImagePath))
-                        //{
-                        //    imagePathLoad = Model.CategoryImagePath;
-                        //}
+                        string imagePathLoad = Html.Value("msgErrorInput");
                         <img class="img-fluid img-thumbnail imgCategory" src="~/images/category/@imagePathLoad" />
                     }
                 </div>
