@@ -68,18 +68,15 @@ function onlyDecimalNumber(obj, e) {
     if (tecla == 46) { if (indexvir !== -1 || indexpon !== -1) { return false } }
 }
 
-function selectFile() {
+function selectFile(input) {
     if (document.getElementById('inputFile').value) {
         document.getElementById('msgErrorInput').innerHTML = document.getElementById('inputFile').value.match(
             /[\/\\]([\w\d\s\.\-\(\)]+)$/
         )[1];
+        document.getElementById('imgLoaded').src = window.URL.createObjectURL(input.files[0])
     } else {
         document.getElementById('msgErrorInput').innerHTML = "noImageFound.jpg";
     }
-}
-
-function selectedFileName(fileName) {
-    return fileName = document.getElementById("msgErrorInput").innerText;
 }
 
 (function (global) {
