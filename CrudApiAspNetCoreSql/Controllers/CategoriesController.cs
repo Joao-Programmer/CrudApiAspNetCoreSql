@@ -162,7 +162,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost("/Categories/Edit/{id}")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,CategoryShortName,CategoryName,CategorySpecialInstructions,CategoryImagePath,CategoryCreateDate")] Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,CategoryShortName,CategoryName,CategorySpecialInstructions,CategoryCreateDate,CategoryImageFile")] Category category)
         {
             if (id != category.CategoryId)
             {
@@ -173,6 +173,16 @@ namespace CrudApiAspNetCoreSql.Controllers
             {
                 try
                 {
+                    // Save image to wwwroot/images/category
+                    string wwwRootPath = _webHostEnvironment.WebRootPath;
+                    category.CategoryImagePath = Path.GetFileName(category.CategoryImageFile.FileName);
+                    string completeFileName = Path.Combine(wwwRootPath + "\\images\\category\\", category.CategoryImagePath);
+
+                    using (var fileStream = new FileStream(completeFileName, FileMode.Create))
+                    {
+                        await category.CategoryImageFile.CopyToAsync(fileStream);
+                    }
+
                     _context.Update(category);
                     await _context.SaveChangesAsync();
                 }
