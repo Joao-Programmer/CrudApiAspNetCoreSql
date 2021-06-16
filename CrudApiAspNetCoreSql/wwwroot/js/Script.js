@@ -3,7 +3,7 @@
 $(document).ready(function () {
     $(".dataMask").inputmask('99/99/9999');
     $(".cpfMask").inputmask('999.999.999-99');
-    $(".cnpjMask").inputmask('99.999.999/9999-99');$(".Numeric_12_2").inputmask("mask", { "mask": "999.999.999,99" }, { reverse: true });
+    $(".cnpjMask").inputmask('99.999.999/9999-99'); $(".Numeric_12_2").inputmask("mask", { "mask": "999.999.999,99" }, { reverse: true });
 });
 
 function currencyFormat(v) {
@@ -69,13 +69,15 @@ function onlyDecimalNumber(obj, e) {
 }
 
 function selectFile(input) {
-    if (document.getElementById('inputFile').value) {
-        document.getElementById('msgErrorInput').innerHTML = document.getElementById('inputFile').value.match(
-            /[\/\\]([\w\d\s\.\-\(\)]+)$/
-        )[1];
+    if (input.files.length > 0) {
+        document.getElementById('msgErrorInput').innerHTML = document.getElementById('inputFile').value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
         document.getElementById('imgLoaded').src = window.URL.createObjectURL(input.files[0])
     } else {
-        document.getElementById('msgErrorInput').innerHTML = "noImageFound.jpg";
+        document.getElementById('msgErrorInput').innerHTML = "No image selected";
+
+        var imagePath = location.protocol + '//' + location.host + "/images/category/noImageFound.jpg";
+
+        document.getElementById('imgLoaded').src = imagePath;
     }
 }
 

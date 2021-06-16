@@ -36,7 +36,16 @@
             <p>Image</p>
         </div>
 
-        <span id="msgErrorInput" class="col-12">@Model.CategoryImagePath</span><br /><br />
+        @{
+            string nameFile = "No image selected";
+
+            if (!String.IsNullOrEmpty(Model.CategoryImagePath))
+            {
+                nameFile = Model.CategoryImagePath;
+            }
+
+            <span id="msgErrorInput" class="col-12">@nameFile</span><br /><br />
+        }
 
         @{
             string imagePathLoad = "noImageFound.jpg";

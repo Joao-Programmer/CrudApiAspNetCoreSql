@@ -40,7 +40,18 @@
                         </label>
 
                         <input asp-for="CategoryImageFile" id="inputFile" hidden="hidden" onchange="selectFile(this);" accept="image/*" />
-                        <span id="msgErrorInput" class="col-12">@Model.CategoryImagePath</span><br /><br />
+
+                        @{
+                            string nameFile = "No image selected";
+
+                            if (!String.IsNullOrEmpty(Model.CategoryImagePath))
+                            {
+                                nameFile = Model.CategoryImagePath;
+                            }
+
+                            <span id="msgErrorInput" class="col-12">@nameFile</span><br /><br />
+                        }
+
                         <span asp-validation-for="CategoryImageFile" class="text-danger"></span>
 
                     </div>

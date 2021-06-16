@@ -20,7 +20,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         private readonly IWebHostEnvironment _webHostEnvironment;
 
         public CategoriesController(AppDbContext context, IWebHostEnvironment webHostEnvironment)
-        {            
+        {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
         }
@@ -35,7 +35,7 @@ namespace CrudApiAspNetCoreSql.Controllers
             ViewData["CurrentFilter"] = searchString;
 
             var categories = from c in _context.Category
-                        select c;
+                             select c;
             if (!String.IsNullOrEmpty(searchString))
             {
                 categories = categories.Where(c => c.CategoryName.Contains(searchString));
@@ -102,7 +102,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         [HttpGet("/Categories/GetCategoryMenuItems/{shortName}")]
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<Category>>> GetCategoryMenuItems(string shortName)
-        {         
+        {
             return await _context.Category.Where(c => c.CategoryShortName == shortName).Include(m => m.CategoryMenuItemsList).ToListAsync();
         }
 
@@ -121,14 +121,17 @@ namespace CrudApiAspNetCoreSql.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Save image to wwwroot/images/category
-                string wwwRootPath = _webHostEnvironment.WebRootPath;
-                category.CategoryImagePath = Path.GetFileName(category.CategoryImageFile.FileName);
-                string completeFileName = Path.Combine(wwwRootPath + "\\images\\category\\", category.CategoryImagePath);
-
-                using(var fileStream = new FileStream(completeFileName, FileMode.Create))
+                if (category.CategoryImageFile != null)
                 {
-                    await category.CategoryImageFile.CopyToAsync(fileStream);
+                    // Save image to wwwroot/images/category
+                    string wwwRootPath = _webHostEnvironment.WebRootPath;
+                    category.CategoryImagePath = Path.GetFileName(category.CategoryImageFile.FileName);
+                    string completeFileName = Path.Combine(wwwRootPath + "\\images\\category\\", category.CategoryImagePath);
+
+                    using (var fileStream = new FileStream(completeFileName, FileMode.Create))
+                    {
+                        await category.CategoryImageFile.CopyToAsync(fileStream);
+                    }
                 }
 
                 _context.Add(category);
@@ -173,14 +176,17 @@ namespace CrudApiAspNetCoreSql.Controllers
             {
                 try
                 {
-                    // Save image to wwwroot/images/category
-                    string wwwRootPath = _webHostEnvironment.WebRootPath;
-                    category.CategoryImagePath = Path.GetFileName(category.CategoryImageFile.FileName);
-                    string completeFileName = Path.Combine(wwwRootPath + "\\images\\category\\", category.CategoryImagePath);
-
-                    using (var fileStream = new FileStream(completeFileName, FileMode.Create))
+                    if (category.CategoryImageFile != null)
                     {
-                        await category.CategoryImageFile.CopyToAsync(fileStream);
+                        // Save image to wwwroot/images/category
+                        string wwwRootPath = _webHostEnvironment.WebRootPath;
+                        category.CategoryImagePath = Path.GetFileName(category.CategoryImageFile.FileName);
+                        string completeFileName = Path.Combine(wwwRootPath + "\\images\\category\\", category.CategoryImagePath);
+
+                        using (var fileStream = new FileStream(completeFileName, FileMode.Create))
+                        {
+                            await category.CategoryImageFile.CopyToAsync(fileStream);
+                        }
                     }
 
                     _context.Update(category);
