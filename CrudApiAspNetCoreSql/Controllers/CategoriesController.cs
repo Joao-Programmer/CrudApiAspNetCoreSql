@@ -162,7 +162,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost("/Categories/Edit/{id}")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,CategoryShortName,CategoryName,CategorySpecialInstructions,CategoryCreateDate,CategoryImageFile")] Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,CategoryShortName,CategoryName,CategorySpecialInstructions,CategoryImagePath,CategoryCreateDate,CategoryImageFile")] Category category)
         {
             if (id != category.CategoryId)
             {

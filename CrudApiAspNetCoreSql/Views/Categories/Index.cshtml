@@ -29,13 +29,13 @@
                     <a asp-action="Index" asp-route-sortOrder="@ViewData["IdSortParm"]">ID</a>
                 </th>
                 <th>
-                    Short Name
-                </th>
-                <th>
                     <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">Name</a>
                 </th>
                 <th class="displayNoneMax768">
                     Special Instructions
+                </th>
+                <th class="displayNoneMax768">
+                    Image Name
                 </th>
                 <th class="displayNoneMax768">
                     Create Date
@@ -46,28 +46,28 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CategoryId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CategoryShortName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CategoryName)
-                    </td>
-                    <td class="displayNoneMax768">
-                        @Html.DisplayFor(modelItem => item.CategorySpecialInstructions)
-                    </td>
-                    <td class="displayNoneMax768">
-                        @Html.DisplayFor(modelItem => item.CategoryCreateDate)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.CategoryId">    <i class="fa fa-pencil-alt fa-sm"></i></a>
-                        <a asp-action="Details" asp-route-id="@item.CategoryId"> <i class="fa fa-search fa-sm"></i></a>
-                        <a asp-action="Delete" asp-route-id="@item.CategoryId">  <i class="fa fa-trash-alt fa-sm"></i></a>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td class="displayNoneMax768">
+                    @Html.DisplayFor(modelItem => item.CategorySpecialInstructions)
+                </td>
+                <td class="displayNoneMax768">
+                    @Html.DisplayFor(modelItem => item.CategoryImagePath)
+                </td>
+                <td class="displayNoneMax768">
+                    @Html.DisplayFor(modelItem => item.CategoryCreateDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CategoryId">    <i class="fa fa-pencil-alt fa-sm"></i></a>
+                    <a asp-action="Details" asp-route-id="@item.CategoryId"> <i class="fa fa-search fa-sm"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.CategoryId">  <i class="fa fa-trash-alt fa-sm"></i></a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

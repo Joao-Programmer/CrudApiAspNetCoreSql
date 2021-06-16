@@ -11,12 +11,6 @@
     <div>
         <dl class="row">
             <dt class="col-sm-2 text-right">
-                Short Name:
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.CategoryShortName)
-            </dd>
-            <dt class="col-sm-2 text-right">
                 Name:
             </dt>
             <dd class="col-sm-10">
@@ -34,12 +28,6 @@
             <dd class="col-sm-10">
                 @Html.DisplayFor(model => model.CategoryCreateDate)
             </dd>
-            <dt class="col-sm-2 text-right">
-                Image Name:
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.CategoryImagePath)
-            </dd>
         </dl>
     </div>
 
@@ -48,6 +36,8 @@
             <p>Image</p>
         </div>
 
+        <span id="msgErrorInput" class="col-12">@Model.CategoryImagePath</span><br /><br />
+
         @{
             string imagePathLoad = "noImageFound.jpg";
 
@@ -55,7 +45,7 @@
             {
                 imagePathLoad = Model.CategoryImagePath;
             }
-            <img class="img-fluid img-thumbnail imgCategory" src="~/images/category/@imagePathLoad"/>
+            <img class="img-fluid img-thumbnail imgCategory" src="~/images/category/@imagePathLoad" />
         }
 
     </div>
