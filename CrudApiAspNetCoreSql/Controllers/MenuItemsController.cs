@@ -160,7 +160,7 @@ namespace CrudApiAspNetCoreSql.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost("/MenuItems/Edit/{id}")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MenuItemID,MenuItemDescription,MenuItemLargePortionName,MenuItemName,MenuItemPriceLarge,MenuItemPriceSmall,MenuItemShortName,MenuItemSmallPortionName,MenuItemCategoryIdFk")] MenuItem menuItem)
+        public async Task<IActionResult> Edit(int id, [Bind("MenuItemID,MenuItemDescription,MenuItemLargePortionName,MenuItemName,MenuItemPriceLarge,MenuItemPriceSmall,MenuItemShortName,MenuItemSmallPortionName,MenuItemCategoryIdFk,MenuItemImageFile")] MenuItem menuItem)
         {
             if (id != menuItem.MenuItemID)
             {
@@ -171,6 +171,19 @@ namespace CrudApiAspNetCoreSql.Controllers
             {
                 try
                 {
+                    if (menuItem.MenuItemImageFile != null)
+                    {
+                        // Save image to wwwroot/images/category
+                        string wwwRootPath = _webHostEnvironment.WebRootPath;
+                        menuItem.MenuItemImagePath = Path.GetFileName(menuItem.MenuItemImageFile.FileName);
+                        string completeFileName = Path.Combine(wwwRootPath + "\\images\\menuItem\\", menuItem.MenuItemImagePath);
+
+                        using (var fileStream = new FileStream(completeFileName, FileMode.Create))
+                        {
+                            await menuItem.MenuItemImageFile.CopyToAsync(fileStream);
+                        }
+                    }
+
                     _context.Update(menuItem);
                     await _context.SaveChangesAsync();
                 }
