@@ -33,7 +33,7 @@
                             <i class="fas fa-folder-open fa-2x"></i>
                         </label>
 
-                        <input asp-for="CategoryImageFile" id="inputFile" hidden="hidden" onchange="selectFile(this);" accept="image/*" />
+                        <input asp-for="CategoryImageFile" id="inputFile" hidden="hidden" onchange="selectFile(this, 'category');" accept="image/*" />
                         <span id="msgErrorInput" class="col-12">No image selected</span><br /><br />
                         <span asp-validation-for="CategoryImageFile" class="text-danger"></span>
 

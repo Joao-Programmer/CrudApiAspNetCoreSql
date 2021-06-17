@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using CrudApiAspNetCoreSql.Data;
 using CrudApiAspNetCoreSql.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace CrudApiAspNetCoreSql.Controllers
 {
@@ -16,10 +18,12 @@ namespace CrudApiAspNetCoreSql.Controllers
     public class MenuItemsController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public MenuItemsController(AppDbContext context)
+        public MenuItemsController(AppDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // ---------------------------- USANDO VIEW -----------------------------------
@@ -108,10 +112,23 @@ namespace CrudApiAspNetCoreSql.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost("/MenuItems/Create")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MenuItemID,MenuItemShortName,MenuItemName,MenuItemDescription,MenuItemSmallPortionName,MenuItemLargePortionName,MenuItemPriceSmall,MenuItemPriceLarge,MenuItemCategoryIdFk")] MenuItem menuItem)
+        public async Task<IActionResult> Create([Bind("MenuItemID,MenuItemShortName,MenuItemName,MenuItemDescription,MenuItemSmallPortionName,MenuItemLargePortionName,MenuItemPriceSmall,MenuItemPriceLarge,MenuItemCategoryIdFk,MenuItemImageFile")] MenuItem menuItem)
         {
             if (ModelState.IsValid)
             {
+                if (menuItem.MenuItemImageFile != null)
+                {
+                    // Save image to wwwroot/images/category
+                    string wwwRootPath = _webHostEnvironment.WebRootPath;
+                    menuItem.MenuItemImagePath = Path.GetFileName(menuItem.MenuItemImageFile.FileName);
+                    string completeFileName = Path.Combine(wwwRootPath + "\\images\\menuItem\\", menuItem.MenuItemImagePath);
+
+                    using (var fileStrem = new FileStream(completeFileName, FileMode.Create))
+                    {
+                        await menuItem.MenuItemImageFile.CopyToAsync(fileStrem);
+                    }
+                }
+
                 _context.Add(menuItem);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

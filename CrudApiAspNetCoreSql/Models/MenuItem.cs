@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -24,5 +25,8 @@ namespace CrudApiAspNetCoreSql.Models
         [ForeignKey("MenuItemCategory")]
         public int MenuItemCategoryIdFk { get; set; }
         public Category MenuItemCategory { get; set; }
+
+        [NotMapped]
+        public IFormFile MenuItemImageFile { get; set; }
     }
 }
