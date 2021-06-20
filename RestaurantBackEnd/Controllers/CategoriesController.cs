@@ -99,11 +99,11 @@ namespace CrudApiAspNetCoreSql.Controllers
         }
 
         // ---------------------------- USANDO POSTMAN --------------------------------
-        [HttpGet("/Categories/GetCategoryMenuItems/{shortName}")]
+        [HttpGet("/Categories/GetCategoryMenuItems/{categoryId}")]
         [AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<Category>>> GetCategoryMenuItems(string shortName)
+        public async Task<ActionResult<IEnumerable<Category>>> GetCategoryMenuItems(int categoryId)
         {
-            return await _context.Category.Where(c => c.CategoryShortName == shortName).Include(m => m.CategoryMenuItemsList).ToListAsync();
+            return await _context.Category.Where(c => c.CategoryId == categoryId).Include(m => m.CategoryMenuItemsList).ToListAsync();
         }
 
         // GET: Categories/Create 
